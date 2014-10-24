@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>nombre</key>
+		<string>Redil de Belen</string>
+		<key>link</key>
+		<string>http://elredildeenvigado.org/</string>
+		<key>direccion</key>
+		<string>Carrera 82C # 26</string>
+		<key>longitud</key>
+		<real>-75.60291100000001</real>
+		<key>latitud</key>
+		<real>6.227939</real>
+		<key>telefono</key>
+		<string>331 7193</string>
+		<key>youtubeChannel</key>
+		<string></string>
+		<key>facebookId</key>
+		<string></string>
+		<key>servicios</key>
+		<string>Domingos 10 a.m - 12 p.m</string>
+	</dict>
+	<dict>
+		<key>nombre</key>
+		<string>Redil de Envigado</string>
+		<key>link</key>
+		<string>http://elredildeenvigado.org/</string>
+		<key>direccion</key>
+		<string>Cra 42A # 25 Sur -48</string>
+		<key>longitud</key>
+		<real>-75.571406</real>
+		<key>latitud</key>
+		<real>6.202661</real>
+		<key>telefono</key>
+		<string>331 7193</string>
+		<key>youtubeChannel</key>
+		<string></string>
+		<key>facebookId</key>
+		<string></string>
+		<key>servicios</key>
+		<string>Domingos 10 a.m - 12 p.m</string>
+	</dict>
+	<dict>
+		<key>nombre</key>
+		<string>Redil del Sur</string>
+		<key>link</key>
+		<string>http://www.redildelsur.com/</string>
+		<key>direccion</key>
+		<string>Carrera 32D # 2</string>
+		<key>longitud</key>
+		<real>-75.617564</real>
+		<key>latitud</key>
+		<real>6.149371</real>
+		<key>telefono</key>
+		<string>578 0689</string>
+		<key>youtubeChannel</key>
+		<string>ElRedildelSur</string>
+		<key>facebookId</key>
+		<string>302852026452097</string>
+		<key>servicios</key>
+		<string>Domingos: 10 a.m - 12 p.m, Miercoles 7 - 9 p.m</string>
+	</dict>
+	<dict>
+		<key>nombre</key>
+		<string>Redil del Poblado</string>
+		<key>link</key>
+		<string>http://www.redildelpoblado.org/</string>
+		<key>direccion</key>
+		<string>Calle 10 # 32A</string>
+		<key>longitud</key>
+		<real>-75.563992</real>
+		<key>latitud</key>
+		<real>6.207416</real>
+		<key>telefono</key>
+		<string>352 2257</string>
+		<key>youtubeChannel</key>
+		<string></string>
+		<key>facebookId</key>
+		<string>186636785665</string>
+		<key>servicios</key>
+		<string>Domingos: 8 - 10 a.m y 10a.m - 12 p.m, Viernes 7 - 9 p.m</string>
+	</dict>
+</array>
+</plist>

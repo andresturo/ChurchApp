@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Nombre</key>
+		<string>La Centralidad de la Palabra de Dios</string>
+		<key>Url</key>
+		<string>http://predicasdelredil.org/predicas/2014/20140720_CARLOSM_ELDESPERTAR11AM.mp3</string>
+		<key>Autor</key>
+		<string>Carlos Medivelso</string>
+		<key>Fecha</key>
+		<string>20 de Julio</string>
+	</dict>
+	<dict>
+		<key>Nombre</key>
+		<string>Esdras, Un Corazon Reformado </string>
+		<key>Url</key>
+		<string>http://predicasdelredil.org/predicas/2014/20140727_RONALD_ESDRAS9AM.mp3</string>
+		<key>Autor</key>
+		<string>Ronald Orozco</string>
+		<key>Fecha</key>
+		<string>27 de Julio</string>
+	</dict>
+	<dict>
+		<key>Nombre</key>
+		<string>Disciplinas Espirituales &quot;El Ayuno&quot; </string>
+		<key>Url</key>
+		<string>http://predicasdelredil.org/predicas/2014/20140803_CARLOSMENDIVELSO_DISCIPLINA1_11AM.mp3</string>
+		<key>Autor</key>
+		<string>Carlos Mendivelso</string>
+		<key>Fecha</key>
+		<string>3 de Agosto</string>
+	</dict>
+	<dict>
+		<key>Nombre</key>
+		<string>Disciplinas Espirituales &quot;La Oracion&quot; </string>
+		<key>Url</key>
+		<string>http://predicasdelredil.org/predicas/2014/20140810_RONALD_OROZCO_DISCIPLINAS2_11AM.mp3</string>
+		<key>Autor</key>
+		<string>Ronald Orozco</string>
+		<key>Fecha</key>
+		<string>8 de Agosto</string>
+	</dict>
+	<dict>
+		<key>Nombre</key>
+		<string>La Mayordomia de la Vida</string>
+		<key>Url</key>
+		<string>http://predicasdelredil.org/predicas/2014/20140824_LUIS_SANIN_11.mp3</string>
+		<key>Autor</key>
+		<string>Luis Sanin</string>
+		<key>Fecha</key>
+		<string>24 de Agosto</string>
+	</dict>
+	<dict>
+		<key>Nombre</key>
+		<string> Disciplinas Espirituales &quot;La Palabra&quot;</string>
+		<key>Url</key>
+		<string>http://predicasdelredil.org/predicas/2014/20140817_MAURICIO_BORRERO_11.mp3</string>
+		<key>Autor</key>
+		<string>Mauricio Borrero</string>
+		<key>Fecha</key>
+		<string>17 de Agosto</string>
+	</dict>
+</array>
+</plist>
