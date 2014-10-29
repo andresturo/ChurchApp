@@ -7,7 +7,8 @@
 //
 
 #import "PendingMessagesTableViewController.h"
-#import "ScheduledMessage.h"
+#import "Message.h"
+#import "TargetGroups.h"
 
 @interface PendingMessagesTableViewController ()<PendingMessagesDelegate, UIAlertViewDelegate,NSCoding>
 
@@ -37,16 +38,19 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dispatchPendingMessage:) name:@"sendScheduledMessages" object:nil];
     
+    
+
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
     //Reload saved data
     
     [self loadMessages];
-    if (self.messages.count > 0) {
-        [self.tableView reloadData];
 
-    }
-    
-
-    
 }
 
 #pragma mark - Lazy Instantiation 
@@ -93,11 +97,10 @@
     
     if (buttonIndex ==0) {
         
-        ScheduledMessage* newMessage = [[ScheduledMessage alloc]initWithMessageTag:messageTag];
-        
-        [newMessage dateStringWithFormat:@"dd/mm/yyyy"];
+        Message* newMessage = [self messageFromTag:messageTag];
         [self.messages addObject:newMessage];
         //TODO: Order tableView by date
+        
         
         
         [self.tableView reloadData];
@@ -105,6 +108,37 @@
     }
 }
 
+#pragma mark - Core Data Helper Methods 
+
+-(Message*)messageFromTag:(NSString*)messageTag{
+    
+    id delegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate managedObjectContext];
+    Message* message = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+    
+    message.messageTag = messageTag;
+    NSError* error = nil;
+    BOOL succeded = [[message managedObjectContext] save:&error];
+    if (!succeded) {
+        NSLog(@"Couldnt save");
+    }
+    
+    return message;
+}
+
+-(void)loadMessages {
+    
+    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Message"];
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"deliverDate" ascending:NO]]];
+    id delegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate managedObjectContext];
+    NSError* error = nil;
+    NSArray* fetchResults = [context executeFetchRequest:fetchRequest error:&error];
+    NSLog(@"Number of loaded messages %i",fetchResults.count);
+    self.messages = [fetchResults mutableCopy];
+    [self.tableView reloadData];
+    
+}
 
 #pragma mark - Table view data source
 
@@ -125,9 +159,12 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pendingMessageCell" forIndexPath:indexPath];
     
-    ScheduledMessage* selectedMessage = self.messages[indexPath.row];
+    Message* selectedMessage = self.messages[indexPath.row];
     cell.textLabel.text = selectedMessage.messageTag;
-    cell.detailTextLabel.text = selectedMessage.messageDateString;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"dd/mm/yyyy"];
+    NSString* dateString = [formatter stringFromDate:selectedMessage.deliverDate];
+    cell.detailTextLabel.text = dateString;
     
     // Configure the cell...
     
@@ -144,7 +181,11 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //add code here for when you hit delete
-
+        Message* message = self.messages[indexPath.row];
+        NSError* error;
+        [[message managedObjectContext] deleteObject:message];
+        [[message managedObjectContext] save:&error];
+        
         [self.messages removeObjectAtIndex:indexPath.row];
         [self.tableView reloadData];
     }
@@ -178,8 +219,8 @@
     
     //Update Schedule date for message on TableViewCell
     
-    ScheduledMessage* currentMessage =[self.messages objectAtIndex:self.indexPathForSelectedCell.row];
-    [currentMessage setDeliverDate:sendDate];
+    Message* currentMessage =[self.messages objectAtIndex:self.indexPathForSelectedCell.row];
+    currentMessage.deliverDate = sendDate;
     [self.messages setObject:currentMessage atIndexedSubscript:self.indexPathForSelectedCell.row];
     
     [self.tableView reloadData];
@@ -201,60 +242,42 @@
 
 -(void)didUpdateMessageTag:(NSString *)messageTag{
     if (messageTag) {
-        [self.messages[self.indexPathForSelectedCell.row] setMessageTag:messageTag];
+        Message* currentMessage = self.messages[self.indexPathForSelectedCell.row];
+         [currentMessage setMessageTag:messageTag];
         [self.tableView reloadData];
     }
    
 }
 
--(void)didFinishSelectingTargetGroups:(NSArray *)targets withRoles:(NSArray *)roles{
+-(void)didFinishSelectingtargetgroupsAndRoles:(NSArray *)info{
     
-    NSLog(@"Selected target groups %@ with roles %@",targets,roles);
-    [self.messages[self.indexPathForSelectedCell.row] addTargetGroups:targets andRoles:roles];
+    Message* currentMessage = self.messages[self.indexPathForSelectedCell.row];
+    currentMessage.targetGroups = info;
+    
 }
 -(void)didUpdateMessage:(NSString *)message{
-    
-    [self.messages[self.indexPathForSelectedCell.row] setMessage:message];
+    Message* currentMessage = self.messages[self.indexPathForSelectedCell.row];
+
+    currentMessage.messageContent = message;
 }
 
 
 -(void)didSaveMessageSettings{
-    NSLog(@"Did save");
-    [self saveMessages];
-    NSLog(@"Target groups in message 1: %i",[[self.messages[0] targetsAndRoles] count]);
-
+    Message* currentMessage = self.messages[self.indexPathForSelectedCell.row];
+    NSError* error;
     
+    BOOL succeded = [[currentMessage managedObjectContext] save:&error];
     
-}
+    if (!succeded) {
+        NSLog(@"Didnt save");
 
-#pragma mark - Save to disk utilities
-
--(NSString*) getFullFilePath:(NSString*)name
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains
-    (NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *savePath = [paths objectAtIndex:0];
-    NSString *theFileName = [NSString stringWithFormat:@"%@.setting", name];
-    return [savePath stringByAppendingPathComponent: theFileName];
-}
-
--(void)saveMessages{
-    
-    // Archiving
-    NSMutableArray *array = self.messages;
-    [NSKeyedArchiver archiveRootObject:array toFile:[self getFullFilePath:@"message"]];
-    
-}
-
--(void)loadMessages {
-    
-    //UnArchiving
-    NSMutableArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:
-                             [self getFullFilePath:@"message"]];
-    if ([array count] > 0) {
-        self.messages = array;
     }
+    
+    
 }
+
+
+
 
 
 

@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ScheduledMessage.h"
+#import "Message.h"
 @protocol PendingMessagesDelegate;
 
 @interface PendingSettingsViewController : UIViewController
 
 @property (weak,nonatomic)id<PendingMessagesDelegate> delegate;
-@property (strong,nonatomic) ScheduledMessage* message;
+@property (strong,nonatomic) Message* message;
 
 
 @end
@@ -23,6 +23,6 @@
 -(void)didUpdateMessageSendDate:(NSDate*)sendDate;
 -(void)didUpdateMessage:(NSString*)message;
 -(void)didUpdateMessageTag:(NSString*)messageTag;
--(void)didFinishSelectingTargetGroups:(NSArray*)targets withRoles:(NSArray*)roles;
+-(void)didFinishSelectingtargetgroupsAndRoles:(NSArray*)info;//Array of dictionaries with keys targetGroup and roleInChurch
 -(void)didSaveMessageSettings;
 @end

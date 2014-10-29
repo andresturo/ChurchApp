@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75452F151A00AD8800F73306 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 75452F101A00AD8800F73306 /* Message.m */; };
+		75452F161A00AD8800F73306 /* Messages.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75452F111A00AD8800F73306 /* Messages.xcdatamodeld */; };
+		75452F171A00AD8800F73306 /* TargetGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = 75452F141A00AD8800F73306 /* TargetGroups.m */; };
 		75BA69A019F99BC400A772D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA699F19F99BC400A772D5 /* main.m */; };
 		75BA69A619F99BC400A772D5 /* ChurchApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69A419F99BC400A772D5 /* ChurchApp.xcdatamodeld */; };
 		75BA69AE19F99BC400A772D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75BA69AD19F99BC400A772D5 /* Images.xcassets */; };
@@ -43,7 +46,6 @@
 		75BA6A2319F99C1100A772D5 /* youtube-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BA69E219F99C1100A772D5 /* youtube-32.png */; };
 		75BA6A2419F99C1100A772D5 /* youtube-44.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BA69E319F99C1100A772D5 /* youtube-44.png */; };
 		75BA6A2519F99C1100A772D5 /* AttendingChurchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69E519F99C1100A772D5 /* AttendingChurchTableViewController.m */; };
-		75BA6A2619F99C1100A772D5 /* CCDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69E719F99C1100A772D5 /* CCDictionary.m */; };
 		75BA6A2719F99C1100A772D5 /* CCIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69E919F99C1100A772D5 /* CCIndexPath.m */; };
 		75BA6A2819F99C1100A772D5 /* EditPendingMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69EB19F99C1100A772D5 /* EditPendingMessageViewController.m */; };
 		75BA6A2919F99C1100A772D5 /* KeyConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69ED19F99C1100A772D5 /* KeyConstants.m */; };
@@ -54,7 +56,6 @@
 		75BA6A2E19F99C1100A772D5 /* PendingSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69F619F99C1100A772D5 /* PendingSettingsViewController.m */; };
 		75BA6A2F19F99C1100A772D5 /* PrivacySettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69F819F99C1100A772D5 /* PrivacySettingsViewController.m */; };
 		75BA6A3019F99C1100A772D5 /* RoleInChurchTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69FA19F99C1100A772D5 /* RoleInChurchTableTableViewController.m */; };
-		75BA6A3119F99C1100A772D5 /* ScheduledMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69FC19F99C1100A772D5 /* ScheduledMessage.m */; };
 		75BA6A3219F99C1100A772D5 /* sedes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75BA69FD19F99C1100A772D5 /* sedes.plist */; };
 		75BA6A3319F99C1100A772D5 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69FF19F99C1100A772D5 /* SettingsViewController.m */; };
 		75BA6A3419F99C1100A772D5 /* SharingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA6A0119F99C1100A772D5 /* SharingTableViewController.m */; };
@@ -117,6 +118,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		75452F0F1A00AD8800F73306 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Message.h; path = "../../../Desktop/Tic Medellin/CoreDataTransformable/Message.h"; sourceTree = "<group>"; };
+		75452F101A00AD8800F73306 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = "../../../Desktop/Tic Medellin/CoreDataTransformable/Message.m"; sourceTree = "<group>"; };
+		75452F121A00AD8800F73306 /* Messages.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Messages.xcdatamodel; sourceTree = "<group>"; };
+		75452F131A00AD8800F73306 /* TargetGroups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetGroups.h; path = "../../../Desktop/Tic Medellin/CoreDataTransformable/TargetGroups.h"; sourceTree = "<group>"; };
+		75452F141A00AD8800F73306 /* TargetGroups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetGroups.m; path = "../../../Desktop/Tic Medellin/CoreDataTransformable/TargetGroups.m"; sourceTree = "<group>"; };
 		75BA699A19F99BC400A772D5 /* ChurchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChurchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75BA699F19F99BC400A772D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75BA69A519F99BC400A772D5 /* ChurchApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChurchApp.xcdatamodel; sourceTree = "<group>"; };
@@ -157,15 +163,13 @@
 		75BA69E319F99C1100A772D5 /* youtube-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube-44.png"; sourceTree = "<group>"; };
 		75BA69E419F99C1100A772D5 /* AttendingChurchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendingChurchTableViewController.h; sourceTree = "<group>"; };
 		75BA69E519F99C1100A772D5 /* AttendingChurchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendingChurchTableViewController.m; sourceTree = "<group>"; };
-		75BA69E619F99C1100A772D5 /* CCDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDictionary.h; sourceTree = "<group>"; };
-		75BA69E719F99C1100A772D5 /* CCDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCDictionary.m; sourceTree = "<group>"; };
 		75BA69E819F99C1100A772D5 /* CCIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCIndexPath.h; sourceTree = "<group>"; };
 		75BA69E919F99C1100A772D5 /* CCIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCIndexPath.m; sourceTree = "<group>"; };
 		75BA69EA19F99C1100A772D5 /* EditPendingMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPendingMessageViewController.h; sourceTree = "<group>"; };
 		75BA69EB19F99C1100A772D5 /* EditPendingMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPendingMessageViewController.m; sourceTree = "<group>"; };
 		75BA69EC19F99C1100A772D5 /* KeyConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyConstants.h; sourceTree = "<group>"; };
 		75BA69ED19F99C1100A772D5 /* KeyConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyConstants.m; sourceTree = "<group>"; };
-		75BA69EE19F99C1100A772D5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		75BA69EE19F99C1100A772D5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
 		75BA69EF19F99C1100A772D5 /* MapDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDetailsViewController.h; sourceTree = "<group>"; };
 		75BA69F019F99C1100A772D5 /* MapDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDetailsViewController.m; sourceTree = "<group>"; };
 		75BA69F119F99C1100A772D5 /* PageContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentsViewController.h; sourceTree = "<group>"; };
@@ -178,8 +182,6 @@
 		75BA69F819F99C1100A772D5 /* PrivacySettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacySettingsViewController.m; sourceTree = "<group>"; };
 		75BA69F919F99C1100A772D5 /* RoleInChurchTableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoleInChurchTableTableViewController.h; sourceTree = "<group>"; };
 		75BA69FA19F99C1100A772D5 /* RoleInChurchTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoleInChurchTableTableViewController.m; sourceTree = "<group>"; };
-		75BA69FB19F99C1100A772D5 /* ScheduledMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduledMessage.h; sourceTree = "<group>"; };
-		75BA69FC19F99C1100A772D5 /* ScheduledMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduledMessage.m; sourceTree = "<group>"; };
 		75BA69FD19F99C1100A772D5 /* sedes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sedes.plist; sourceTree = "<group>"; };
 		75BA69FE19F99C1100A772D5 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		75BA69FF19F99C1100A772D5 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -190,8 +192,8 @@
 		75BA6A0419F99C1100A772D5 /* URLPredicas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = URLPredicas.plist; sourceTree = "<group>"; };
 		75BA6A0519F99C1100A772D5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		75BA6A0619F99C1100A772D5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		75BA6A3A19F99C5A00A772D5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		75BA6A3B19F99C5A00A772D5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		75BA6A3A19F99C5A00A772D5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
+		75BA6A3B19F99C5A00A772D5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
 		75BA6A3C19F99C5A00A772D5 /* contacts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = contacts.plist; sourceTree = "<group>"; };
 		75BA6A3D19F99C5A00A772D5 /* ContactsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsDetailViewController.h; sourceTree = "<group>"; };
 		75BA6A3E19F99C5A00A772D5 /* ContactsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsDetailViewController.m; sourceTree = "<group>"; };
@@ -217,7 +219,7 @@
 		75BA6A5419F99C5A00A772D5 /* PredicasTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PredicasTableViewController.m; sourceTree = "<group>"; };
 		75BA6A5719F99C5A00A772D5 /* SocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
 		75BA6A5819F99C5A00A772D5 /* SocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialViewController.m; sourceTree = "<group>"; };
-		75BA6AAD19F9A3AB00A772D5 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		75BA6AAD19F9A3AB00A772D5 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
 		75BA6AAE19F9A52600A772D5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		75BA6AB019F9A54F00A772D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		75BA6AB219F9A55600A772D5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -294,16 +296,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		75452F181A00AD9000F73306 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				75452F0F1A00AD8800F73306 /* Message.h */,
+				75452F101A00AD8800F73306 /* Message.m */,
+				75452F111A00AD8800F73306 /* Messages.xcdatamodeld */,
+				75452F131A00AD8800F73306 /* TargetGroups.h */,
+				75452F141A00AD8800F73306 /* TargetGroups.m */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
 		75BA699119F99BC400A772D5 = {
 			isa = PBXGroup;
 			children = (
-				75BA6AAD19F9A3AB00A772D5 /* PrefixHeader.pch */,
 				75BA6A3819F99C1C00A772D5 /* Images */,
 				75BA6A7319F99DDF00A772D5 /* Data source */,
-				75BA6A3A19F99C5A00A772D5 /* AppDelegate.h */,
-				75BA6A3B19F99C5A00A772D5 /* AppDelegate.m */,
 				75BA6A7419F99E5500A772D5 /* ViewControllers */,
-				75BA69EE19F99C1100A772D5 /* Main.storyboard */,
 				75BA699C19F99BC400A772D5 /* ChurchApp */,
 				75BA69B919F99BC400A772D5 /* ChurchAppTests */,
 				75BA699B19F99BC400A772D5 /* Products */,
@@ -341,6 +351,10 @@
 		75BA699C19F99BC400A772D5 /* ChurchApp */ = {
 			isa = PBXGroup;
 			children = (
+				75BA69EE19F99C1100A772D5 /* Main.storyboard */,
+				75BA6A3A19F99C5A00A772D5 /* AppDelegate.h */,
+				75BA6A3B19F99C5A00A772D5 /* AppDelegate.m */,
+				75BA699F19F99BC400A772D5 /* main.m */,
 				75BA69AD19F99BC400A772D5 /* Images.xcassets */,
 				75BA69AF19F99BC400A772D5 /* LaunchScreen.xib */,
 				75BA699D19F99BC400A772D5 /* Supporting Files */,
@@ -351,9 +365,9 @@
 		75BA699D19F99BC400A772D5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				75BA6AAD19F9A3AB00A772D5 /* PrefixHeader.pch */,
 				75BA6AEC19F9AB2C00A772D5 /* Info.plist */,
 				75BA6AD519F9A87000A772D5 /* Pickers */,
-				75BA699F19F99BC400A772D5 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -450,18 +464,15 @@
 		75BA6A6E19F99CB800A772D5 /* Scheduled Messages */ = {
 			isa = PBXGroup;
 			children = (
-				75BA69FB19F99C1100A772D5 /* ScheduledMessage.h */,
-				75BA69FC19F99C1100A772D5 /* ScheduledMessage.m */,
-				75BA69F319F99C1100A772D5 /* PendingMessagesTableViewController.h */,
-				75BA69F419F99C1100A772D5 /* PendingMessagesTableViewController.m */,
-				75BA69F519F99C1100A772D5 /* PendingSettingsViewController.h */,
-				75BA69F619F99C1100A772D5 /* PendingSettingsViewController.m */,
-				75BA69E619F99C1100A772D5 /* CCDictionary.h */,
-				75BA69E719F99C1100A772D5 /* CCDictionary.m */,
-				75BA69E819F99C1100A772D5 /* CCIndexPath.h */,
-				75BA69E919F99C1100A772D5 /* CCIndexPath.m */,
+				75452F181A00AD9000F73306 /* Core Data */,
 				75BA69EA19F99C1100A772D5 /* EditPendingMessageViewController.h */,
 				75BA69EB19F99C1100A772D5 /* EditPendingMessageViewController.m */,
+				75BA69F519F99C1100A772D5 /* PendingSettingsViewController.h */,
+				75BA69F619F99C1100A772D5 /* PendingSettingsViewController.m */,
+				75BA69F319F99C1100A772D5 /* PendingMessagesTableViewController.h */,
+				75BA69F419F99C1100A772D5 /* PendingMessagesTableViewController.m */,
+				75BA69E819F99C1100A772D5 /* CCIndexPath.h */,
+				75BA69E919F99C1100A772D5 /* CCIndexPath.m */,
 			);
 			name = "Scheduled Messages";
 			sourceTree = "<group>";
@@ -726,6 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75BA6A5919F99C5A00A772D5 /* AppDelegate.m in Sources */,
+				75452F161A00AD8800F73306 /* Messages.xcdatamodeld in Sources */,
 				75BA6A2F19F99C1100A772D5 /* PrivacySettingsViewController.m in Sources */,
 				75BA6A3019F99C1100A772D5 /* RoleInChurchTableTableViewController.m in Sources */,
 				75BA6A5F19F99C5A00A772D5 /* ExpandingTableViewCell.m in Sources */,
@@ -734,6 +746,7 @@
 				75BA6AE619F9A87000A772D5 /* ActionSheetCustomPicker.m in Sources */,
 				75BA6A6019F99C5A00A772D5 /* InfoRediles.m in Sources */,
 				75BA6A3719F99C1100A772D5 /* User.m in Sources */,
+				75452F171A00AD8800F73306 /* TargetGroups.m in Sources */,
 				75BA6A6219F99C5A00A772D5 /* MapPin.m in Sources */,
 				75BA6A6519F99C5A00A772D5 /* MULoginViewController.m in Sources */,
 				75BA6A3519F99C1100A772D5 /* TargetGroupTableViewCell.m in Sources */,
@@ -742,17 +755,16 @@
 				75BA6A2B19F99C1100A772D5 /* MapDetailsViewController.m in Sources */,
 				75BA6A2819F99C1100A772D5 /* EditPendingMessageViewController.m in Sources */,
 				75BA6A6419F99C5A00A772D5 /* MUConstants.m in Sources */,
+				75452F151A00AD8800F73306 /* Message.m in Sources */,
 				75BA69A619F99BC400A772D5 /* ChurchApp.xcdatamodeld in Sources */,
 				75BA6A5C19F99C5A00A772D5 /* ContactsTableViewController.m in Sources */,
 				75BA6AD419F9A7DC00A772D5 /* AudioTableViewCell.m in Sources */,
-				75BA6A3119F99C1100A772D5 /* ScheduledMessage.m in Sources */,
 				75BA6A6719F99C5A00A772D5 /* PredicasTableViewController.m in Sources */,
 				75BA6A2D19F99C1100A772D5 /* PendingMessagesTableViewController.m in Sources */,
 				75BA6AE819F9A87000A772D5 /* ActionSheetDistancePicker.m in Sources */,
 				75BA6A5B19F99C5A00A772D5 /* ContactsDetailViewController.m in Sources */,
 				75BA6A2919F99C1100A772D5 /* KeyConstants.m in Sources */,
 				75BA6A2C19F99C1100A772D5 /* PageContentsViewController.m in Sources */,
-				75BA6A2619F99C1100A772D5 /* CCDictionary.m in Sources */,
 				75BA6A3419F99C1100A772D5 /* SharingTableViewController.m in Sources */,
 				75BA6AEA19F9A87000A772D5 /* DistancePickerView.m in Sources */,
 				75BA6A6319F99C5A00A772D5 /* MapViewController.m in Sources */,
@@ -972,6 +984,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		75452F111A00AD8800F73306 /* Messages.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				75452F121A00AD8800F73306 /* Messages.xcdatamodel */,
+			);
+			currentVersion = 75452F121A00AD8800F73306 /* Messages.xcdatamodel */;
+			name = Messages.xcdatamodeld;
+			path = "../../../Desktop/Tic Medellin/CoreDataTransformable/Messages.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		75BA69A419F99BC400A772D5 /* ChurchApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

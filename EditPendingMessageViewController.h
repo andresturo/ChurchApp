@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ScheduledMessage.h"
+#import "Message.h"
 
 @protocol EditPendingMessageDelegate;
 
 @interface EditPendingMessageViewController : UIViewController
 
 @property (weak,nonatomic) id<EditPendingMessageDelegate> delegate;
-@property (strong,nonatomic) ScheduledMessage* message;
+@property (strong,nonatomic) Message* message;
 
 
 @end

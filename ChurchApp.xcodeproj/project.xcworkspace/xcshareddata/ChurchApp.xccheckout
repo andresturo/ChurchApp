@@ -10,22 +10,26 @@
 	<string>ChurchApp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>5380C1B6013B0A09645DC2E388982D0388F08DAD</key>
+		<string>https://github.com/DanielCardonaRojas/ChurchApp.git</string>
 		<key>ED55FD88378A6DE2BAB75F5613E34CF9CF6C9E04</key>
 		<string>https://github.com/DanielCardonaRojas/iOS-Dev.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ChurchApp/ChurchApp.xcodeproj</string>
+	<string>ChurchApp.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>5380C1B6013B0A09645DC2E388982D0388F08DAD</key>
+		<string>../..</string>
 		<key>ED55FD88378A6DE2BAB75F5613E34CF9CF6C9E04</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/DanielCardonaRojas/iOS-Dev.git</string>
+	<string>https://github.com/DanielCardonaRojas/ChurchApp.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>ED55FD88378A6DE2BAB75F5613E34CF9CF6C9E04</string>
+	<string>5380C1B6013B0A09645DC2E388982D0388F08DAD</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -34,7 +38,15 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>ED55FD88378A6DE2BAB75F5613E34CF9CF6C9E04</string>
 			<key>IDESourceControlWCCName</key>
-			<string>iOS-Dev</string>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5380C1B6013B0A09645DC2E388982D0388F08DAD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ChurchApp</string>
 		</dict>
 	</array>
 </dict>

@@ -112,12 +112,22 @@
     return managedObjectContext;
 }
 
+//- (NSManagedObjectModel *)managedObjectModel {
+//    if (managedObjectModel != nil) {
+//        return managedObjectModel;
+//    }
+//    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+//    
+//    return managedObjectModel;
+//}
+
 - (NSManagedObjectModel *)managedObjectModel {
+    // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
     if (managedObjectModel != nil) {
         return managedObjectModel;
     }
-    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-    
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Messages" withExtension:@"momd"];
+    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return managedObjectModel;
 }
 
