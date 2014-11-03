@@ -8,12 +8,18 @@
 
 #import "SharingTableViewController.h"
 #import "DetailSharedMessageViewController.h"
+#import "ReceivedMessage.h"
 
 
 @interface SharingTableViewController () <UIAlertViewDelegate>
-@property (strong,nonatomic) NSArray* sharingActivities;
+@property (strong,nonatomic) NSMutableArray* scheduledMessages;//These are messages scheduled to show on a date
+@property (strong,nonatomic) NSMutableArray* showingMessages;//Actual data source
+@property (strong,nonatomic) ReceivedMessage* currentMessage;
 @property (nonatomic) NSInteger selectedCellIndex;
+@property BOOL shouldUpdateMessages;
 @end
+
+//TODO: Best way of sync between core data and parse service
 
 @implementation SharingTableViewController
 
@@ -29,18 +35,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
  
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self checkForUpdates];
+    [self loadMessages];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
-    PFQuery* queryForSharingActivities = [PFQuery queryWithClassName:@"Sharing"];
-    [queryForSharingActivities findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        self.sharingActivities = objects;
-        [self.tableView reloadData];
-    }];
+   
 }
 - (void)didReceiveMemoryWarning
 {
@@ -52,8 +59,8 @@
     
     if ([segue.destinationViewController isKindOfClass:[DetailSharedMessageViewController class]]) {
         DetailSharedMessageViewController* nextVC = (DetailSharedMessageViewController*)segue.destinationViewController;
-        NSDictionary* message = self.sharingActivities[self.selectedCellIndex];
-        nextVC.messageContentProxy = [message objectForKey:@"content"];
+        self.currentMessage = self.showingMessages[self.selectedCellIndex];
+        nextVC.messageContentProxy = self.currentMessage.messageContent;
     }
 }
 
@@ -68,7 +75,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.sharingActivities count];
+    return [self.showingMessages count];
 }
 
 
@@ -80,9 +87,9 @@
     }
     
     // Configure the cell...
-    PFObject* activity = _sharingActivities[indexPath.row];
-    cell.textLabel.text = activity[@"tag"];
-    cell.detailTextLabel.text = activity[@"userName"];
+    ReceivedMessage* message = self.showingMessages[indexPath.row];
+    cell.textLabel.text = message.messageTag;
+    cell.detailTextLabel.text = message.fromUser;
     
     return cell;
 }
@@ -140,14 +147,131 @@
 /*TODO:
  1)Retrieve from parse and store to core data
  1.1)Retrieve checking for messages not already persisted to core data - Should this be done by comparing counts?
+ 1.2)Retrieve checking if current user is included in the targetgroup of message
  2) Schedule a local notification using the showDate
+ 
+ -Count parse objects, count core data object if count doesnot match - retrive from parse and replace core data objects
+ 
  */
 #pragma mark - Core Data
+
+-(void)loadReceivedMessages {
+    
+    
+    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"ReceivedMessage"];
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"showDate" ascending:NO]]];
+    //Filter to show only messages from today and before
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"showDate < %@",[NSDate date]];
+    [fetchRequest setPredicate:predicate];
+    
+    id delegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate managedObjectContext];
+    NSError* error = nil;
+    NSArray* fetchedResults = [context executeFetchRequest:fetchRequest error:&error];
+    
+    
+    
+    NSLog(@"Number of loaded messages %i",fetchedResults.count);
+    self.showingMessages = [fetchedResults mutableCopy];
+    [self.tableView reloadData];
+    
+}
+
+-(void)deleteAllReceivedMessages{
+    
+    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"ReceivedMessage"];
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"showDate" ascending:NO]]];
+    id delegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate managedObjectContext];
+    NSError* error = nil;
+    NSArray* fetchedResults = [context executeFetchRequest:fetchRequest error:&error];
+    
+    for (ReceivedMessage* msg in fetchedResults) {
+        [[msg managedObjectContext]delete:msg];
+    }
+    
+}
+
+-(NSInteger)countCoreDataReceivedMessages{
+    
+    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"ReceivedMessage"];
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"showDate" ascending:NO]]];
+    id delegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate managedObjectContext];
+    NSError* error = nil;
+    NSArray* fetchedResults = [context executeFetchRequest:fetchRequest error:&error];
+    return [fetchedResults count];
+}
+
+
 
 
 #pragma mark - Parse
 
+-(void)loadMessagesFromParse{
+    
+    PFQuery* query = [PFQuery queryWithClassName:@"Sharing"];
+    [query includeKey:@"fromUser"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+          //TODO: Make ReceivedMessages from fetched Array
+            
+            for (PFObject* object in objects) {
+                [self receivedMessageFromParseObject:object];
+            }
+            
+            [self.tableView reloadData];
 
+        }
+    }];
+    
+}
+
+-(void)checkForUpdates{
+    PFQuery* query = [PFQuery queryWithClassName:@"Sharing"];
+    
+     [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        if (!error) {
+            NSInteger localCount = [self countCoreDataReceivedMessages];
+            if (number > localCount) {
+                self.shouldUpdateMessages = YES;
+                NSLog(@"Should update");
+            }
+        }else {
+            
+            self.shouldUpdateMessages = NO;
+        }
+    }];
+}
+
+#pragma mark - Helpers
+
+-(void)receivedMessageFromParseObject:(PFObject*)object{
+    id delegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate managedObjectContext];
+    NSError* error = nil;
+    
+    ReceivedMessage* newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"ReceivedMessage" inManagedObjectContext:context];
+    newMessage.messageContent = object[@"content"];
+    newMessage.messageTag = object[@"tag"];
+    newMessage.showDate = object[@"showDate"];
+    newMessage.fromUser = object[@"fromUser"];
+    [[newMessage managedObjectContext]save:&error];
+    
+}
+
+
+-(void)loadMessages{
+    
+    if (self.shouldUpdateMessages) {
+//        [self deleteAllReceivedMessages];
+        [self loadMessagesFromParse];
+    }else {
+        
+        [self loadReceivedMessages];
+    }
+    
+}
 
 
 

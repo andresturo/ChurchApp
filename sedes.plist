@@ -4,6 +4,26 @@
 <array>
 	<dict>
 		<key>nombre</key>
+		<string>Redil de la 33</string>
+		<key>link</key>
+		<string>http://www.redildelpoblado.org/</string>
+		<key>direccion</key>
+		<string>Carrera 77C # 48-85</string>
+		<key>longitud</key>
+		<real>-75.59528899999999</real>
+		<key>latitud</key>
+		<real>6.259205</real>
+		<key>telefono</key>
+		<string>352 2257</string>
+		<key>youtubeChannel</key>
+		<string></string>
+		<key>facebookId</key>
+		<string>186636785665</string>
+		<key>servicios</key>
+		<string>Domingos: 8 - 10 a.m y 10a.m - 12 p.m, Viernes 7 - 9 p.m</string>
+	</dict>
+	<dict>
+		<key>nombre</key>
 		<string>Redil de Belen</string>
 		<key>link</key>
 		<string>http://elredildeenvigado.org/</string>

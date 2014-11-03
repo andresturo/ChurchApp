@@ -23,7 +23,7 @@
 @protocol EditPendingMessageDelegate <NSObject>
 
 @required
--(void)didEndEditingMessage:(NSString*)message;
+-(void)didEndEditingMessage:(Message*)message;
 -(void)didFinishEditingTag:(NSString*)messageTag;
 
 @end

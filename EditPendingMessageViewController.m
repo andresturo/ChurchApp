@@ -45,8 +45,8 @@
 #pragma mark - UITextViewDelegate
 
 -(void)textViewDidEndEditing:(UITextView *)textView{
-    
-    [self.delegate didEndEditingMessage:textView.text];
+    self.message.messageContent = textView.text;
+    [self.delegate didEndEditingMessage:self.message];
 }
 
 #pragma mark - UITextFieldDelegate

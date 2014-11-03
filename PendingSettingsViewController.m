@@ -363,10 +363,10 @@
 
 #pragma mark - EditPendingMessagesDelegate
 
--(void)didEndEditingMessage:(NSString *)message{
+-(void)didEndEditingMessage:(Message*)message{
     
     //TODO: Persist message and messageTag
-    self.message.messageContent = message;
+    self.message = message;
     NSError* error;
     [[self.message managedObjectContext] save:&error];
 }

@@ -183,7 +183,30 @@
     
     PFObject* message = [PFObject objectWithClassName:@"Sharing"];
     [message setObject:tag forKey:@"tag"];
+    [message setObject:[PFUser currentUser] forKey:@"fromUser"];
     [message saveInBackground];
+}
+
+-(void)deleteMessageFromParse{
+    
+    PFQuery* query = [PFQuery queryWithClassName:@"Sharing"];
+    
+    Message* msg = self.messages[self.indexPathForSelectedCell.row];
+    [query whereKey:@"fromUser" equalTo:[PFUser currentUser]];
+    [query whereKey:@"tag" equalTo:msg.messageTag];
+    [query includeKey:@"fromUser"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error && objects.count > 0) {
+            NSLog(@"object count %i with fromUser %@",objects.count,objects[0][@"fromUser"][@"profile"][@"name"]);
+            
+            for (PFObject* obj in objects) {
+                [obj deleteInBackground];
+            }
+        }
+    
+    }];
+    
 }
 
 -(void)updateParseMessage{
@@ -253,6 +276,10 @@
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        //Remove from parse too
+        [self deleteMessageFromParse];
+
         //add code here for when you hit delete
         Message* message = self.messages[indexPath.row];
         NSError* error;
@@ -261,11 +288,13 @@
         
         [self.messages removeObjectAtIndex:indexPath.row];
         [self.tableView reloadData];
+        
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     self.indexPathForSelectedCell = indexPath;
+    
     [self performSegueWithIdentifier:@"toMessageSettingsSegue" sender:nil];
 }
 
