@@ -123,6 +123,7 @@
             if(aboutUser)nextView.profileInfo = aboutUser;
             if(selectedContact[@"name"])nextView.profileName = selectedContact[@"name"];
             if(selectedContact[@"email"]) nextView.mailRecipient = selectedContact[ @"email"];
+            if (selectedContact[@"cellphone"]) nextView.cellphone = selectedContact[@"cellphone"];
             if(self.profilePictures && self.profilePictures.count != 0){nextView.profileImage = self.profilePictures[indexPath.row];}
         }
    
@@ -134,6 +135,7 @@
     if ([segue.destinationViewController isKindOfClass:[SettingsViewController class]]) {
         SettingsViewController* nextViewController = (SettingsViewController*)segue.destinationViewController;
         nextViewController.userNameProxy = self.currentUserFBProfileInfo[@"name"];
+        
     }
     
 }

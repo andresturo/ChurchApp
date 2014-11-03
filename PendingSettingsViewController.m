@@ -13,6 +13,9 @@
 #import "ActionSheetStringPicker.h"
 #import "CCIndexPath.h"
 
+/*TODO: By default all message will be sent now if no date has been assigned 
+ and will be sent to all if no targetgroup is selected but wont be sent if message is blank */
+
 
 @interface PendingSettingsViewController ()
 <UITableViewDataSource,UITableViewDelegate,EditPendingMessageDelegate,UINavigationControllerDelegate
@@ -363,6 +366,9 @@
 -(void)didEndEditingMessage:(NSString *)message{
     
     //TODO: Persist message and messageTag
+    self.message.messageContent = message;
+    NSError* error;
+    [[self.message managedObjectContext] save:&error];
 }
 -(void)didFinishEditingTag:(NSString *)messageTag{
     self.message.messageTag = messageTag;

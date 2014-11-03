@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		75452F151A00AD8800F73306 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 75452F101A00AD8800F73306 /* Message.m */; };
 		75452F161A00AD8800F73306 /* Messages.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75452F111A00AD8800F73306 /* Messages.xcdatamodeld */; };
 		75452F171A00AD8800F73306 /* TargetGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = 75452F141A00AD8800F73306 /* TargetGroups.m */; };
+		757844F71A07CA26003E2F14 /* DetailSharedMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 757844F61A07CA26003E2F14 /* DetailSharedMessageViewController.m */; };
+		757844FE1A07F07C003E2F14 /* ReceivedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 757844FD1A07F07C003E2F14 /* ReceivedMessage.m */; };
+		757845011A07F07D003E2F14 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 757845001A07F07D003E2F14 /* Message.m */; };
 		75BA69A019F99BC400A772D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA699F19F99BC400A772D5 /* main.m */; };
 		75BA69A619F99BC400A772D5 /* ChurchApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69A419F99BC400A772D5 /* ChurchApp.xcdatamodeld */; };
 		75BA69AE19F99BC400A772D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75BA69AD19F99BC400A772D5 /* Images.xcassets */; };
@@ -118,11 +120,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		75452F0F1A00AD8800F73306 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Message.h; path = "../../../Desktop/Tic Medellin/CoreDataTransformable/Message.h"; sourceTree = "<group>"; };
-		75452F101A00AD8800F73306 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = "../../../Desktop/Tic Medellin/CoreDataTransformable/Message.m"; sourceTree = "<group>"; };
 		75452F121A00AD8800F73306 /* Messages.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Messages.xcdatamodel; sourceTree = "<group>"; };
 		75452F131A00AD8800F73306 /* TargetGroups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetGroups.h; path = "../../../Desktop/Tic Medellin/CoreDataTransformable/TargetGroups.h"; sourceTree = "<group>"; };
 		75452F141A00AD8800F73306 /* TargetGroups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetGroups.m; path = "../../../Desktop/Tic Medellin/CoreDataTransformable/TargetGroups.m"; sourceTree = "<group>"; };
+		757844F51A07CA26003E2F14 /* DetailSharedMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailSharedMessageViewController.h; path = ChurchApp/DetailSharedMessageViewController.h; sourceTree = "<group>"; };
+		757844F61A07CA26003E2F14 /* DetailSharedMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailSharedMessageViewController.m; path = ChurchApp/DetailSharedMessageViewController.m; sourceTree = "<group>"; };
+		757844FC1A07F07C003E2F14 /* ReceivedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceivedMessage.h; sourceTree = "<group>"; };
+		757844FD1A07F07C003E2F14 /* ReceivedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceivedMessage.m; sourceTree = "<group>"; };
+		757844FF1A07F07D003E2F14 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		757845001A07F07D003E2F14 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		75BA699A19F99BC400A772D5 /* ChurchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChurchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75BA699F19F99BC400A772D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75BA69A519F99BC400A772D5 /* ChurchApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChurchApp.xcdatamodel; sourceTree = "<group>"; };
@@ -299,13 +305,30 @@
 		75452F181A00AD9000F73306 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				75452F0F1A00AD8800F73306 /* Message.h */,
-				75452F101A00AD8800F73306 /* Message.m */,
 				75452F111A00AD8800F73306 /* Messages.xcdatamodeld */,
+				757844FF1A07F07D003E2F14 /* Message.h */,
+				757845001A07F07D003E2F14 /* Message.m */,
+				757844FC1A07F07C003E2F14 /* ReceivedMessage.h */,
+				757844FD1A07F07C003E2F14 /* ReceivedMessage.m */,
 				75452F131A00AD8800F73306 /* TargetGroups.h */,
 				75452F141A00AD8800F73306 /* TargetGroups.m */,
 			);
 			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		757844F81A07E665003E2F14 /* Schedule Messages */ = {
+			isa = PBXGroup;
+			children = (
+				75BA69EA19F99C1100A772D5 /* EditPendingMessageViewController.h */,
+				75BA69EB19F99C1100A772D5 /* EditPendingMessageViewController.m */,
+				75BA69F519F99C1100A772D5 /* PendingSettingsViewController.h */,
+				75BA69F619F99C1100A772D5 /* PendingSettingsViewController.m */,
+				75BA69F319F99C1100A772D5 /* PendingMessagesTableViewController.h */,
+				75BA69F419F99C1100A772D5 /* PendingMessagesTableViewController.m */,
+				75BA69E819F99C1100A772D5 /* CCIndexPath.h */,
+				75BA69E919F99C1100A772D5 /* CCIndexPath.m */,
+			);
+			name = "Schedule Messages";
 			sourceTree = "<group>";
 		};
 		75BA699119F99BC400A772D5 = {
@@ -461,25 +484,21 @@
 			name = Audio;
 			sourceTree = "<group>";
 		};
-		75BA6A6E19F99CB800A772D5 /* Scheduled Messages */ = {
+		75BA6A6E19F99CB800A772D5 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
 				75452F181A00AD9000F73306 /* Core Data */,
-				75BA69EA19F99C1100A772D5 /* EditPendingMessageViewController.h */,
-				75BA69EB19F99C1100A772D5 /* EditPendingMessageViewController.m */,
-				75BA69F519F99C1100A772D5 /* PendingSettingsViewController.h */,
-				75BA69F619F99C1100A772D5 /* PendingSettingsViewController.m */,
-				75BA69F319F99C1100A772D5 /* PendingMessagesTableViewController.h */,
-				75BA69F419F99C1100A772D5 /* PendingMessagesTableViewController.m */,
-				75BA69E819F99C1100A772D5 /* CCIndexPath.h */,
-				75BA69E919F99C1100A772D5 /* CCIndexPath.m */,
+				75BA6A6F19F99CF000A772D5 /* Sharing */,
+				757844F81A07E665003E2F14 /* Schedule Messages */,
 			);
-			name = "Scheduled Messages";
+			name = Messages;
 			sourceTree = "<group>";
 		};
 		75BA6A6F19F99CF000A772D5 /* Sharing */ = {
 			isa = PBXGroup;
 			children = (
+				757844F51A07CA26003E2F14 /* DetailSharedMessageViewController.h */,
+				757844F61A07CA26003E2F14 /* DetailSharedMessageViewController.m */,
 				75BA6A0019F99C1100A772D5 /* SharingTableViewController.h */,
 				75BA6A0119F99C1100A772D5 /* SharingTableViewController.m */,
 			);
@@ -546,9 +565,8 @@
 				75BA6A6B19F99C7300A772D5 /* Maps */,
 				75BA6A6C19F99C8600A772D5 /* Login */,
 				75BA6A6D19F99C9300A772D5 /* Audio */,
-				75BA6A6E19F99CB800A772D5 /* Scheduled Messages */,
+				75BA6A6E19F99CB800A772D5 /* Messages */,
 				75BA6A7019F99D1400A772D5 /* Settings */,
-				75BA6A6F19F99CF000A772D5 /* Sharing */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -755,7 +773,6 @@
 				75BA6A2B19F99C1100A772D5 /* MapDetailsViewController.m in Sources */,
 				75BA6A2819F99C1100A772D5 /* EditPendingMessageViewController.m in Sources */,
 				75BA6A6419F99C5A00A772D5 /* MUConstants.m in Sources */,
-				75452F151A00AD8800F73306 /* Message.m in Sources */,
 				75BA69A619F99BC400A772D5 /* ChurchApp.xcdatamodeld in Sources */,
 				75BA6A5C19F99C5A00A772D5 /* ContactsTableViewController.m in Sources */,
 				75BA6AD419F9A7DC00A772D5 /* AudioTableViewCell.m in Sources */,
@@ -768,11 +785,14 @@
 				75BA6A3419F99C1100A772D5 /* SharingTableViewController.m in Sources */,
 				75BA6AEA19F9A87000A772D5 /* DistancePickerView.m in Sources */,
 				75BA6A6319F99C5A00A772D5 /* MapViewController.m in Sources */,
+				757845011A07F07D003E2F14 /* Message.m in Sources */,
 				75BA6A2E19F99C1100A772D5 /* PendingSettingsViewController.m in Sources */,
+				757844FE1A07F07C003E2F14 /* ReceivedMessage.m in Sources */,
 				75BA6AE919F9A87000A772D5 /* ActionSheetStringPicker.m in Sources */,
 				75BA6A2719F99C1100A772D5 /* CCIndexPath.m in Sources */,
 				75BA6AEB19F9A87000A772D5 /* SWActionSheet.m in Sources */,
 				75BA6A3319F99C1100A772D5 /* SettingsViewController.m in Sources */,
+				757844F71A07CA26003E2F14 /* DetailSharedMessageViewController.m in Sources */,
 				75BA6AE719F9A87000A772D5 /* ActionSheetDatePicker.m in Sources */,
 				75BA69A019F99BC400A772D5 /* main.m in Sources */,
 				75BA6A2519F99C1100A772D5 /* AttendingChurchTableViewController.m in Sources */,
@@ -896,6 +916,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = ChurchApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -912,6 +933,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = ChurchApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

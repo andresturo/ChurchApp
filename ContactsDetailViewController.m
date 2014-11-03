@@ -67,14 +67,28 @@
 #pragma mark - IBActions 
 
 - (IBAction)mailButton:(id)sender {
-    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        UIActionSheet* actionSheet = [[UIActionSheet alloc]initWithTitle:@"Select an action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Mail",@"Call", nil];
-        
-        [actionSheet showFromBarButtonItem:_actionSheetBarButton animated:YES];
-        return;
-    }
+//    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+//        UIActionSheet* actionSheet = [[UIActionSheet alloc]initWithTitle:@"Select an action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Mail",@"Call", nil];
+//        
+//        [actionSheet showFromBarButtonItem:_actionSheetBarButton animated:YES];
+//        return;
+//    }
+//    
+//    [self sendMail];
     
-    [self sendMail];
+    NSString *text = @"My mail text";
+    
+    NSURL *recipients = [NSURL URLWithString:@"mailto:me@example.com?subject=Hi"];
+    
+    NSArray *activityItems = @[text, recipients];
+    
+    UIActivityViewController *activity = [[UIActivityViewController alloc]
+                                                    initWithActivityItems:activityItems
+                                                    applicationActivities:nil];
+    
+    [self.navigationController presentViewController:activity animated:YES completion:nil];
+    
+    
 }
 #pragma mark - Mail Methods
 

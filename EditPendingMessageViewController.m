@@ -31,6 +31,7 @@
     // Do any additional setup after loading the view.
     
     self.messageTagTextField.text = self.message.messageTag;
+    self.messageTextView.text = self.message.messageContent;
     self.messageTagTextField.delegate = self;
     self.messageTextView.delegate = self;
 }
@@ -58,9 +59,14 @@
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
+    
     if (textField.text.length > 0 ) {
         self.message.messageTag = textField.text;
         [self.delegate didFinishEditingTag:textField.text];
+    }else {
+        
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Empty Message" message:@"Please enter a non empty message" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
     }
 }
 

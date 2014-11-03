@@ -10,6 +10,8 @@
 #import "Message.h"
 #import "TargetGroups.h"
 
+//TODO: Block user from sending same event more than once, how to update message once pushed to parse
+
 @interface PendingMessagesTableViewController ()<PendingMessagesDelegate, UIAlertViewDelegate,NSCoding>
 
 @property (strong,nonatomic)NSIndexPath* indexPathForSelectedCell;
@@ -123,22 +125,93 @@
         NSLog(@"Couldnt save");
     }
     
+
+    [self newParseMessageFromTag:messageTag];
+    
     return message;
 }
 
 -(void)loadMessages {
+    
+    //TODO: Should delivered messages be deleted here?
+//    [self deleteOldMessages];
     
     NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Message"];
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"deliverDate" ascending:NO]]];
     id delegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* context = [delegate managedObjectContext];
     NSError* error = nil;
-    NSArray* fetchResults = [context executeFetchRequest:fetchRequest error:&error];
-    NSLog(@"Number of loaded messages %i",fetchResults.count);
-    self.messages = [fetchResults mutableCopy];
+    NSArray* fetchedResults = [context executeFetchRequest:fetchRequest error:&error];
+    
+
+    
+    NSLog(@"Number of loaded messages %i",fetchedResults.count);
+    self.messages = [fetchedResults mutableCopy];
     [self.tableView reloadData];
     
 }
+
+-(void)deleteOldMessages {
+    
+    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Message"];
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"deliverDate" ascending:NO];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    id delegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context  = [delegate managedObjectContext];
+    NSError* error = nil;
+    NSArray* fetchedResults = [context executeFetchRequest:fetchRequest error:&error];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"deliverDate < %@",[NSDate date]];
+    NSArray* filteredArray = [fetchedResults filteredArrayUsingPredicate:predicate];
+    for (Message* msg in filteredArray) {
+        [[msg managedObjectContext] deleteObject:msg];
+    }
+    
+    NSLog(@"%i deleted messages",[[context deletedObjects] count]);
+    
+    
+    if (![context save:&error]) {
+        NSLog(@"Couldnt save after deleting objects");
+    }
+    
+    
+}
+#pragma mark - Push to parse
+
+
+-(void)newParseMessageFromTag:(NSString*)tag{
+    
+    PFObject* message = [PFObject objectWithClassName:@"Sharing"];
+    [message setObject:tag forKey:@"tag"];
+    [message saveInBackground];
+}
+
+-(void)updateParseMessage{
+    
+    PFQuery* query = [PFQuery queryWithClassName:@"Sharing"];
+    
+    Message* msg = self.messages[self.indexPathForSelectedCell.row];
+    NSLog(@"message tag: %@",msg.messageContent);
+    [query whereKey:@"tag" equalTo:msg.messageTag ];
+    
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *message, NSError *error) {
+        if (!error) {
+            NSLog(@"Found PFObject %@",message[@"targetGroups"]);
+            //Found message with specified tag
+            [message setObject:msg.messageContent forKey:@"content"];
+            [message setObject:msg.messageTag forKey:@"tag"];
+            [message setObject:msg.deliverDate forKey:@"showDate"];
+            [message setObject:msg.targetGroups forKey:@"targetGroups"];
+            [message saveInBackground];
+            
+        }else {
+            // Did not find any UserStats for the current user
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
 
 #pragma mark - Table view data source
 
@@ -213,9 +286,6 @@
 
 -(void)didUpdateMessageSendDate:(NSDate *)sendDate{
     
-    //Sort tableView to have ascending dates
-//    NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"deliverDate" ascending:YES];
-//    self.messages = [[self.messages sortedArrayUsingDescriptors:@[sortDescriptor]] mutableCopy];
     
     //Update Schedule date for message on TableViewCell
     
@@ -259,21 +329,22 @@
     Message* currentMessage = self.messages[self.indexPathForSelectedCell.row];
 
     currentMessage.messageContent = message;
+    NSLog(@"Updated message content %@",currentMessage.messageContent);
 }
 
 
 -(void)didSaveMessageSettings{
-    Message* currentMessage = self.messages[self.indexPathForSelectedCell.row];
+    Message* msg = self.messages[self.indexPathForSelectedCell.row];
     NSError* error;
     
-    BOOL succeded = [[currentMessage managedObjectContext] save:&error];
+    BOOL succeded = [[msg managedObjectContext] save:&error];
     
     if (!succeded) {
         NSLog(@"Didnt save");
 
     }
     
-    
+    [self updateParseMessage];
 }
 
 

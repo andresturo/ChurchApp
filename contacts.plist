@@ -7,7 +7,7 @@
 		<string>Diego Cardona</string>
 		<key>email</key>
 		<string>diegocardonaq@gmail.com</string>
-		<key>cel</key>
+		<key>cellphone</key>
 		<string>311 315 7754</string>
 		<key>roleInChurch</key>
 		<string>Pastor </string>
@@ -19,7 +19,7 @@
 		<string>Carlos Mendivelso</string>
 		<key>email</key>
 		<string>carlos.mendi@gmail.com</string>
-		<key>cel</key>
+		<key>cellphone</key>
 		<string>311 443 2341</string>
 		<key>roleInChurch</key>
 		<string>Pastor</string>
@@ -31,7 +31,7 @@
 		<string>Jairo Suarez</string>
 		<key>email</key>
 		<string>jairito@gmail.com</string>
-		<key>cel</key>
+		<key>cellphone</key>
 		<string>311 234 5432</string>
 		<key>roleInChurch</key>
 		<string>Pastor </string>
@@ -43,7 +43,7 @@
 		<string>Jair</string>
 		<key>email</key>
 		<string>jairsito@gmail.com</string>
-		<key>cel</key>
+		<key>cellphone</key>
 		<string>312 233 4345</string>
 		<key>roleInChurch</key>
 		<string>Grupo de Alabanza</string>

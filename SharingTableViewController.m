@@ -7,9 +7,12 @@
 //
 
 #import "SharingTableViewController.h"
+#import "DetailSharedMessageViewController.h"
+
 
 @interface SharingTableViewController () <UIAlertViewDelegate>
 @property (strong,nonatomic) NSArray* sharingActivities;
+@property (nonatomic) NSInteger selectedCellIndex;
 @end
 
 @implementation SharingTableViewController
@@ -35,7 +38,7 @@
     [super viewDidAppear:animated];
     PFQuery* queryForSharingActivities = [PFQuery queryWithClassName:@"Sharing"];
     [queryForSharingActivities findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        _sharingActivities = objects;
+        self.sharingActivities = objects;
         [self.tableView reloadData];
     }];
 }
@@ -43,6 +46,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([segue.destinationViewController isKindOfClass:[DetailSharedMessageViewController class]]) {
+        DetailSharedMessageViewController* nextVC = (DetailSharedMessageViewController*)segue.destinationViewController;
+        NSDictionary* message = self.sharingActivities[self.selectedCellIndex];
+        nextVC.messageContentProxy = [message objectForKey:@"content"];
+    }
 }
 
 #pragma mark - Table view data source
@@ -69,10 +81,16 @@
     
     // Configure the cell...
     PFObject* activity = _sharingActivities[indexPath.row];
-    cell.textLabel.text = activity[@"testimonio"];
+    cell.textLabel.text = activity[@"tag"];
     cell.detailTextLabel.text = activity[@"userName"];
     
     return cell;
+}
+#pragma mark - TableViewDelegate 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.selectedCellIndex = indexPath.row;
 }
 
 - (IBAction)addActivityBarButtonPressed:(UIBarButtonItem *)sender {
@@ -118,6 +136,16 @@
     }];
     
 }
+
+/*TODO:
+ 1)Retrieve from parse and store to core data
+ 1.1)Retrieve checking for messages not already persisted to core data - Should this be done by comparing counts?
+ 2) Schedule a local notification using the showDate
+ */
+#pragma mark - Core Data
+
+
+#pragma mark - Parse
 
 
 

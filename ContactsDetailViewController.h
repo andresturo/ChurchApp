@@ -22,6 +22,7 @@
 @property (strong,nonatomic) UIImage* profileImage;
 @property (strong,nonatomic) NSString* profileInfo;
 @property (strong,nonatomic) NSString* profileName;
+@property (strong,nonatomic) NSString* cellphone;
 
 - (IBAction)mailButton:(id)sender;
 
