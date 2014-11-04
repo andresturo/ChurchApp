@@ -264,7 +264,7 @@
             </objects>
             <point key="canvasLocation" x="1006" y="652"/>
         </scene>
-        <!--Item-->
+        <!--Info-->
         <scene sceneID="vPh-PW-J5F">
             <objects>
                 <viewController id="Cgu-Eh-ZqP" customClass="SocialViewController" sceneMemberID="viewController">
@@ -435,10 +435,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.74290523419999999" green="0.88910943860000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="8zO-gP-BCd"/>
+                    <tabBarItem key="tabBarItem" title="Info" image="sheep-32.png" id="UCY-vt-qmw"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="eAp-vI-9Fq"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="zx0-im-Ahh" id="NXd-7N-o16"/>
                     </connections>
@@ -490,11 +490,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Isf-wi-T21">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2w5-ga-Eo6">
-                            <connections>
-                                <action selector="addActivityBarButtonPressed:" destination="dGS-Cu-aBe" id="MuI-3Y-W2x"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="2w5-ga-Eo6"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rqe-PC-7Rc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1170,6 +1166,7 @@
         <image name="link-50.png" width="50" height="50"/>
         <image name="location-32.png" width="32" height="32"/>
         <image name="micro-32.png" width="32" height="32"/>
+        <image name="sheep-32.png" width="32" height="32"/>
         <image name="youtube-44.png" width="44" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

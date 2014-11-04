@@ -100,13 +100,7 @@
     self.selectedCellIndex = indexPath.row;
 }
 
-- (IBAction)addActivityBarButtonPressed:(UIBarButtonItem *)sender {
-    
-    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle: @"Share with others" message:@"Enter message you would like to share" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: @"Cancel",nil];
-    
-    [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    [alertView show];
-}
+
 
 #pragma mark - UIALertViewDelegate
 
