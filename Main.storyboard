@@ -569,7 +569,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Zd8-Vv-G3v">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="DYZ-lp-saY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="DYZ-lp-saY">
                             <connections>
                                 <action selector="addMessageBarButtonPressed:" destination="ImF-hQ-rTZ" id="OGQ-my-OKU"/>
                             </connections>
@@ -620,13 +620,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iro-dU-xJF">
-                                                    <rect key="frame" x="242" y="17" width="31" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Role">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target Group" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x9L-44-1gu">
                                                     <rect key="frame" x="20" y="7" width="194" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -634,11 +627,18 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Role in Group" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TwU-WJ-Hej">
-                                                    <rect key="frame" x="20" y="36" width="194" height="21"/>
+                                                    <rect key="frame" x="20" y="36" width="229" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iro-dU-xJF">
+                                                    <rect key="frame" x="247" y="17" width="31" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Role">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1121,11 +1121,11 @@
             </objects>
             <point key="canvasLocation" x="2169" y="2529"/>
         </scene>
-        <!--Comunity-->
+        <!--Sharing-->
         <scene sceneID="WSV-hi-OMg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l4g-sw-LUd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Comunity" id="GDF-pD-b8E"/>
+                    <tabBarItem key="tabBarItem" title="Sharing" image="invite-32.png" id="GDF-pD-b8E"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NGh-XI-3SP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1140,11 +1140,11 @@
             </objects>
             <point key="canvasLocation" x="1892" y="245"/>
         </scene>
-        <!--Scheduled Messages-->
+        <!--Message-->
         <scene sceneID="Bfj-tH-JTu">
             <objects>
                 <navigationController storyboardIdentifier="pendingMessagesNavigation" automaticallyAdjustsScrollViewInsets="NO" id="gja-oE-b4a" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Scheduled Messages" id="ecO-Jp-Gb9"/>
+                    <tabBarItem key="tabBarItem" title="Message" image="collect-32.png" id="ecO-Jp-Gb9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q8r-1T-SWG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1162,9 +1162,11 @@
     </scenes>
     <resources>
         <image name="clock-32.png" width="32" height="32"/>
+        <image name="collect-32.png" width="32" height="32"/>
         <image name="contacts-32.png" width="32" height="32"/>
         <image name="elRedilLogo.jpg" width="960" height="849"/>
         <image name="facebook-44.png" width="44" height="44"/>
+        <image name="invite-32.png" width="32" height="32"/>
         <image name="link-50.png" width="50" height="50"/>
         <image name="location-32.png" width="32" height="32"/>
         <image name="micro-32.png" width="32" height="32"/>

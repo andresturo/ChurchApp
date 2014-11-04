@@ -38,10 +38,8 @@
    self.tableView.allowsMultipleSelectionDuringEditing = NO;
     self.messages = [[NSMutableArray alloc]init];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dispatchPendingMessage:) name:@"sendScheduledMessages" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dispatchPendingMessage:) name:@"sendScheduledMessages" object:nil];
     
-    
-
     
 }
 
@@ -134,7 +132,7 @@
 -(void)loadMessages {
     
     //TODO: Should delivered messages be deleted here?
-//    [self deleteOldMessages];
+    [self deleteOldMessages];
     
     NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Message"];
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"deliverDate" ascending:NO]]];
@@ -163,8 +161,12 @@
     
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"deliverDate < %@",[NSDate date]];
     NSArray* filteredArray = [fetchedResults filteredArrayUsingPredicate:predicate];
+    
     for (Message* msg in filteredArray) {
         [[msg managedObjectContext] deleteObject:msg];
+        //Delete From Parse too
+        [self deleteMessageFromParse:msg];
+
     }
     
     NSLog(@"%i deleted messages",[[context deletedObjects] count]);
@@ -173,6 +175,9 @@
     if (![context save:&error]) {
         NSLog(@"Couldnt save after deleting objects");
     }
+    
+    
+    
     
     
 }
@@ -187,11 +192,10 @@
     [message saveInBackground];
 }
 
--(void)deleteMessageFromParse{
+-(void)deleteMessageFromParse:(Message*)msg{
     
     PFQuery* query = [PFQuery queryWithClassName:@"Sharing"];
     
-    Message* msg = self.messages[self.indexPathForSelectedCell.row];
     [query whereKey:@"fromUser" equalTo:[PFUser currentUser]];
     [query whereKey:@"tag" equalTo:msg.messageTag];
     [query includeKey:@"fromUser"];
@@ -220,7 +224,7 @@
     
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *message, NSError *error) {
         if (!error) {
-            NSLog(@"Found PFObject %@",message[@"targetGroups"]);
+            NSLog(@"Updating Found PFObject %@",message[@"targetGroups"]);
             //Found message with specified tag
             [message setObject:msg.messageContent forKey:@"content"];
             [message setObject:msg.messageTag forKey:@"tag"];
@@ -278,7 +282,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         //Remove from parse too
-        [self deleteMessageFromParse];
+        [self deleteMessageFromParse:self.messages[indexPath.row]];
 
         //add code here for when you hit delete
         Message* message = self.messages[indexPath.row];
@@ -323,18 +327,6 @@
     [self.messages setObject:currentMessage atIndexedSubscript:self.indexPathForSelectedCell.row];
     
     [self.tableView reloadData];
-    
-    
-    //Schedule LocalNotification
-    
-    UILocalNotification* localNotification = [[UILocalNotification alloc]init];
-    [localNotification setFireDate:sendDate];
-    [localNotification setAlertBody:@"Pending scheduled messages"];
-    [localNotification setAlertAction:@"Send right now!"];
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication]applicationIconBadgeNumber] + 1;
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    
     
     
 }

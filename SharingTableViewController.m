@@ -161,8 +161,8 @@
     NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"ReceivedMessage"];
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"showDate" ascending:NO]]];
     //Filter to show only messages from today and before
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"showDate < %@",[NSDate date]];
-    [fetchRequest setPredicate:predicate];
+//    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"showDate < %@",[NSDate date]];
+//    [fetchRequest setPredicate:predicate];
     
     id delegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* context = [delegate managedObjectContext];
@@ -207,20 +207,20 @@
 
 
 #pragma mark - Parse
-
--(void)loadMessagesFromParse{
-    
+-(void)loadMessagesFromParse{//MARK: seems like parse cant support predicates with contained in
+    NSString* currentUserChurch = [[NSUserDefaults standardUserDefaults] objectForKey:@"attendingChurch"];
+    NSLog(@"Will query for user attendingChurch %@",currentUserChurch);
     PFQuery* query = [PFQuery queryWithClassName:@"Sharing"];
+//    [query whereKey:@"fromUser" notEqualTo:[PFUser currentUser]];
     [query includeKey:@"fromUser"];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
           //TODO: Make ReceivedMessages from fetched Array
-            
+            NSLog(@"Found %i messages for user attendingChurch",objects.count);
             for (PFObject* object in objects) {
                 [self receivedMessageFromParseObject:object];
             }
-            
-            [self.tableView reloadData];
 
         }
     }];
@@ -245,32 +245,59 @@
 }
 
 #pragma mark - Helpers
-
+//TODO: Query before saving -avoid duplicates
 -(void)receivedMessageFromParseObject:(PFObject*)object{
     id delegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* context = [delegate managedObjectContext];
     NSError* error = nil;
+    //Find if current user belongs in message Role group
+ 
+    NSString* currentUserRole = [[NSUserDefaults standardUserDefaults] objectForKey:@"roleInChurch"];
+    NSString* currentUserChurch = [[NSUserDefaults standardUserDefaults] objectForKey:@"attendingChurch"];
+
+    NSArray* targetGroups = object[@"targetGroups"];//This for shure must be an array of one object
+    NSDictionary* targetGroup = [targetGroups firstObject];
+    ReceivedMessage* newMessage;
     
-    ReceivedMessage* newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"ReceivedMessage" inManagedObjectContext:context];
-    newMessage.messageContent = object[@"content"];
-    newMessage.messageTag = object[@"tag"];
-    newMessage.showDate = object[@"showDate"];
-    newMessage.fromUser = object[@"fromUser"];
-    [[newMessage managedObjectContext]save:&error];
+    //Filter parse query for target and role of user
+    if ([targetGroup[@"targetGroup"]isEqualToString:currentUserChurch])
+    if ([targetGroup[@"roleInChurch"] isEqualToString:@"None"] || [targetGroup[@"roleInChurch"] isEqualToString:currentUserRole]) {
+        
+        //Persist if not already saved
+        NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"ReceivedMessage"];
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"messageTag == %@",object[@"tag"]];
+        [fetchRequest setPredicate:predicate];
+        NSArray* fetchedDuplicates = [context executeFetchRequest:fetchRequest error:&error];
+        
+        if (fetchedDuplicates.count == 0) {
+            NSLog(@"No duplicate");
+            newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"ReceivedMessage" inManagedObjectContext:context];
+            newMessage.messageContent = object[@"content"];
+            newMessage.messageTag = object[@"tag"];
+            newMessage.showDate = object[@"showDate"];
+            newMessage.fromUser = object[@"fromUser"];
+            [[newMessage managedObjectContext]save:&error];
+        }   
+
+    }
+
+  
     
 }
 
 
 -(void)loadMessages{
     
-    if (self.shouldUpdateMessages) {
+//    if (self.shouldUpdateMessages) {
 //        [self deleteAllReceivedMessages];
-        [self loadMessagesFromParse];
-    }else {
-        
-        [self loadReceivedMessages];
-    }
-    
+//        [self loadMessagesFromParse];
+//    }else {
+//        
+//        [self loadReceivedMessages];
+//    }
+
+    [self loadMessagesFromParse];
+    [self loadReceivedMessages];
 }
 
 

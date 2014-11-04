@@ -37,13 +37,7 @@
     
     if (localNotification) {
         NSLog(@"Did receive notification after background");
-        PendingMessagesTableViewController* vc = [storyBoard instantiateViewControllerWithIdentifier:@"pendingMessagesController"];
-        self.window.rootViewController = vc;
-        [self.window makeKeyAndVisible];
-
-
-        application.applicationIconBadgeNumber = 0;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"sendScheduledMessages" object:self userInfo:nil];
+    
         
 
     }
@@ -57,7 +51,7 @@
     UIApplicationState state = [application applicationState];
     if (state == UIApplicationStateActive) {
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"sendScheduledMessages" object:self userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"showScheduledMessages" object:self userInfo:nil];
 
     }
     

@@ -87,7 +87,6 @@
     
     //Default Selection
     self.checkMarkIndexPaths = [[NSMutableArray alloc]init];
-//    [self loadCheckMarks];
     self.navigationController.delegate = self;
 }
 
@@ -110,7 +109,8 @@
 
 #pragma mark - UINavigationControllerDelegate
 -(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    
+    self.navigationController.delegate = nil;
+
     
     if ([self.checkMarkIndexPaths count] == 0 && [viewController isKindOfClass:[PendingMessagesTableViewController class]]) {
         UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"Can't send a message withoud target group" message:@"Select a target group" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -121,6 +121,7 @@
 
 #pragma mark - Segue Methods
 
+//MARK: This VC will relase message so if editVC doesnt edit message(return message via delegate) no information will be pushed
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if ([segue.destinationViewController isKindOfClass:[EditPendingMessageViewController class]]) {
@@ -297,20 +298,23 @@
     }else if (indexPath.section == 0){
         
         cell.titleLabel.text = self.message.messageTag;
-        cell.subtitleLabel.hidden = YES;
+        NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"ccc dd MMM hh:m a"];
+        NSString* dateString = [formatter stringFromDate:self.message.deliverDate];
+        cell.subtitleLabel.text = [NSString stringWithFormat:@"Scheduled for: %@", dateString];
         cell.roleButton.hidden = YES;
         
     }
     
   
         
-        if ([self.checkMarkIndexPaths containsObject:(CCIndexPath*)indexPath]) {
+    if ([self.checkMarkIndexPaths containsObject:(CCIndexPath*)indexPath]) {
             [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
            // cell.roleButton.hidden = NO;
-        }else {
+    }else {
             
             [cell setAccessoryType:UITableViewCellAccessoryNone];
-        }
+    }
     
 
     

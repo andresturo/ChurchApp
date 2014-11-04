@@ -12,6 +12,8 @@
 		757844F71A07CA26003E2F14 /* DetailSharedMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 757844F61A07CA26003E2F14 /* DetailSharedMessageViewController.m */; };
 		757844FE1A07F07C003E2F14 /* ReceivedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 757844FD1A07F07C003E2F14 /* ReceivedMessage.m */; };
 		757845011A07F07D003E2F14 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 757845001A07F07D003E2F14 /* Message.m */; };
+		757845031A0834B6003E2F14 /* collect-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 757845021A0834B6003E2F14 /* collect-32.png */; };
+		757845051A0834DB003E2F14 /* invite-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 757845041A0834DB003E2F14 /* invite-32.png */; };
 		75BA69A019F99BC400A772D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA699F19F99BC400A772D5 /* main.m */; };
 		75BA69A619F99BC400A772D5 /* ChurchApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69A419F99BC400A772D5 /* ChurchApp.xcdatamodeld */; };
 		75BA69AE19F99BC400A772D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75BA69AD19F99BC400A772D5 /* Images.xcassets */; };
@@ -129,6 +131,8 @@
 		757844FD1A07F07C003E2F14 /* ReceivedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceivedMessage.m; sourceTree = "<group>"; };
 		757844FF1A07F07D003E2F14 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		757845001A07F07D003E2F14 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		757845021A0834B6003E2F14 /* collect-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collect-32.png"; sourceTree = "<group>"; };
+		757845041A0834DB003E2F14 /* invite-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invite-32.png"; sourceTree = "<group>"; };
 		75BA699A19F99BC400A772D5 /* ChurchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChurchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75BA699F19F99BC400A772D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75BA69A519F99BC400A772D5 /* ChurchApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChurchApp.xcdatamodel; sourceTree = "<group>"; };
@@ -586,12 +590,14 @@
 				75BA69DC19F99C1100A772D5 /* micro-32.png */,
 				75BA69E019F99C1100A772D5 /* sheep-32.png */,
 				75BA69E119F99C1100A772D5 /* tv_show-32.png */,
+				757845021A0834B6003E2F14 /* collect-32.png */,
 				75BA69E219F99C1100A772D5 /* youtube-32.png */,
 				75BA69E319F99C1100A772D5 /* youtube-44.png */,
 				75BA69C919F99C1100A772D5 /* church-32.png */,
 				75BA69CA19F99C1100A772D5 /* clock-32.png */,
 				75BA69CB19F99C1100A772D5 /* contactos-32.png */,
 				75BA69CC19F99C1100A772D5 /* contacts-32.png */,
+				757845041A0834DB003E2F14 /* invite-32.png */,
 				75BA69CD19F99C1100A772D5 /* cross-32.png */,
 			);
 			name = icons;
@@ -700,6 +706,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75BA6A1C19F99C1100A772D5 /* message-32.png in Resources */,
+				757845051A0834DB003E2F14 /* invite-32.png in Resources */,
 				75BA69B119F99BC400A772D5 /* LaunchScreen.xib in Resources */,
 				75BA6A1D19F99C1100A772D5 /* micro-32.png in Resources */,
 				75BA6A2419F99C1100A772D5 /* youtube-44.png in Resources */,
@@ -707,6 +714,7 @@
 				75BA6A0919F99C1100A772D5 /* Campamentos.jpg in Resources */,
 				75BA6A1119F99C1100A772D5 /* EscuelaMusica.jpg in Resources */,
 				75BA6A1919F99C1100A772D5 /* link-50.png in Resources */,
+				757845031A0834B6003E2F14 /* collect-32.png in Resources */,
 				75BA6A1219F99C1100A772D5 /* facebook-32.png in Resources */,
 				75BA6A1B19F99C1100A772D5 /* logoRedilSur.png in Resources */,
 				75BA6A1319F99C1100A772D5 /* facebook-44.png in Resources */,
