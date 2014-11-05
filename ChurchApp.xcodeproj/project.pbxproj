@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		75452F161A00AD8800F73306 /* Messages.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75452F111A00AD8800F73306 /* Messages.xcdatamodeld */; };
-		75452F171A00AD8800F73306 /* TargetGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = 75452F141A00AD8800F73306 /* TargetGroups.m */; };
 		757844F71A07CA26003E2F14 /* DetailSharedMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 757844F61A07CA26003E2F14 /* DetailSharedMessageViewController.m */; };
 		757844FE1A07F07C003E2F14 /* ReceivedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 757844FD1A07F07C003E2F14 /* ReceivedMessage.m */; };
 		757845011A07F07D003E2F14 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 757845001A07F07D003E2F14 /* Message.m */; };
 		757845031A0834B6003E2F14 /* collect-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 757845021A0834B6003E2F14 /* collect-32.png */; };
 		757845051A0834DB003E2F14 /* invite-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 757845041A0834DB003E2F14 /* invite-32.png */; };
+		757845081A09DE79003E2F14 /* TargetGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = 757845071A09DE79003E2F14 /* TargetGroups.m */; };
 		75BA69A019F99BC400A772D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA699F19F99BC400A772D5 /* main.m */; };
 		75BA69A619F99BC400A772D5 /* ChurchApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75BA69A419F99BC400A772D5 /* ChurchApp.xcdatamodeld */; };
 		75BA69AE19F99BC400A772D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75BA69AD19F99BC400A772D5 /* Images.xcassets */; };
@@ -123,8 +123,6 @@
 
 /* Begin PBXFileReference section */
 		75452F121A00AD8800F73306 /* Messages.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Messages.xcdatamodel; sourceTree = "<group>"; };
-		75452F131A00AD8800F73306 /* TargetGroups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetGroups.h; path = "../../../Desktop/Tic Medellin/CoreDataTransformable/TargetGroups.h"; sourceTree = "<group>"; };
-		75452F141A00AD8800F73306 /* TargetGroups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetGroups.m; path = "../../../Desktop/Tic Medellin/CoreDataTransformable/TargetGroups.m"; sourceTree = "<group>"; };
 		757844F51A07CA26003E2F14 /* DetailSharedMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailSharedMessageViewController.h; path = ChurchApp/DetailSharedMessageViewController.h; sourceTree = "<group>"; };
 		757844F61A07CA26003E2F14 /* DetailSharedMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailSharedMessageViewController.m; path = ChurchApp/DetailSharedMessageViewController.m; sourceTree = "<group>"; };
 		757844FC1A07F07C003E2F14 /* ReceivedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceivedMessage.h; sourceTree = "<group>"; };
@@ -133,6 +131,8 @@
 		757845001A07F07D003E2F14 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		757845021A0834B6003E2F14 /* collect-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collect-32.png"; sourceTree = "<group>"; };
 		757845041A0834DB003E2F14 /* invite-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invite-32.png"; sourceTree = "<group>"; };
+		757845061A09DE79003E2F14 /* TargetGroups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetGroups.h; sourceTree = "<group>"; };
+		757845071A09DE79003E2F14 /* TargetGroups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetGroups.m; sourceTree = "<group>"; };
 		75BA699A19F99BC400A772D5 /* ChurchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChurchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75BA699F19F99BC400A772D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75BA69A519F99BC400A772D5 /* ChurchApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChurchApp.xcdatamodel; sourceTree = "<group>"; };
@@ -310,12 +310,12 @@
 			isa = PBXGroup;
 			children = (
 				75452F111A00AD8800F73306 /* Messages.xcdatamodeld */,
+				757845061A09DE79003E2F14 /* TargetGroups.h */,
+				757845071A09DE79003E2F14 /* TargetGroups.m */,
 				757844FF1A07F07D003E2F14 /* Message.h */,
 				757845001A07F07D003E2F14 /* Message.m */,
 				757844FC1A07F07C003E2F14 /* ReceivedMessage.h */,
 				757844FD1A07F07C003E2F14 /* ReceivedMessage.m */,
-				75452F131A00AD8800F73306 /* TargetGroups.h */,
-				75452F141A00AD8800F73306 /* TargetGroups.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -772,7 +772,7 @@
 				75BA6AE619F9A87000A772D5 /* ActionSheetCustomPicker.m in Sources */,
 				75BA6A6019F99C5A00A772D5 /* InfoRediles.m in Sources */,
 				75BA6A3719F99C1100A772D5 /* User.m in Sources */,
-				75452F171A00AD8800F73306 /* TargetGroups.m in Sources */,
+				757845081A09DE79003E2F14 /* TargetGroups.m in Sources */,
 				75BA6A6219F99C5A00A772D5 /* MapPin.m in Sources */,
 				75BA6A6519F99C5A00A772D5 /* MULoginViewController.m in Sources */,
 				75BA6A3519F99C1100A772D5 /* TargetGroupTableViewCell.m in Sources */,
