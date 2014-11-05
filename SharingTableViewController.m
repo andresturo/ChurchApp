@@ -154,6 +154,7 @@
     
     NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"ReceivedMessage"];
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"showDate" ascending:NO]]];
+
     //Filter to show only messages from today and before
 //    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"showDate < %@",[NSDate date]];
 //    [fetchRequest setPredicate:predicate];
@@ -166,6 +167,7 @@
     
     
     NSLog(@"Number of loaded messages %i",fetchedResults.count);
+    NSLog(@"%@",fetchedResults);
     self.showingMessages = [fetchedResults mutableCopy];
     [self.tableView reloadData];
     
