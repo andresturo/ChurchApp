@@ -14,7 +14,10 @@
 #import "CCIndexPath.h"
 
 /*TODO: By default all message will be sent now if no date has been assigned 
- and will be sent to all if no targetgroup is selected but wont be sent if message is blank */
+ and will be sent to all if no targetgroup is selected but wont be sent if message is blank 
+ 
+ 
+ */
 
 
 @interface PendingSettingsViewController ()
@@ -157,6 +160,8 @@
 
     
 }
+
+#pragma mark - IBActions
 - (IBAction)saveBarButtonPressed:(UIBarButtonItem *)sender {
     
     if (self.selectedDate && [self.delegate respondsToSelector:@selector(didUpdateMessageSendDate:)]) {
@@ -334,7 +339,14 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (indexPath.section == 0) {
+        
+        
+        [self selectedTargetsAndRoles];
+        self.message.targetGroups = self.targetsWithRoles;
+        [[self.message managedObjectContext]save:nil];
+        
         [self performSegueWithIdentifier:@"toMessageEditSegue" sender:nil];
+        
         
     }else if(indexPath.section == 1){
         
