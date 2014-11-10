@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+//Testing xcode github 
+
+//TODO: simplify to have only one target group
 
 @interface Message : NSManagedObject
 

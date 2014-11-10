@@ -32,6 +32,7 @@
 @property (strong,nonatomic) NSArray* churchNames;
 @property (strong,nonatomic) NSArray* rolesInChurch;
 @property (strong,nonatomic) NSIndexPath* currentSelectedIndexPath;
+
 @property (strong,nonatomic) NSMutableArray* datasourceTargets;
 //An array of CCIndexPath objects
 @property (strong,nonatomic) NSMutableArray* checkMarkIndexPaths;

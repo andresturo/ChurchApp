@@ -11,7 +11,7 @@
 #import "ReceivedMessage.h"
 
 
-@interface SharingTableViewController () <UIAlertViewDelegate>
+@interface SharingTableViewController ()
 @property (strong,nonatomic) NSMutableArray* scheduledMessages;//These are messages scheduled to show on a date
 @property (strong,nonatomic) NSMutableArray* showingMessages;//Actual data source
 @property (strong,nonatomic) ReceivedMessage* currentMessage;
@@ -35,8 +35,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- 
+        
+    [self.refreshControl addTarget:self action:@selector(refreshInvoked:) forControlEvents:UIControlEventValueChanged];
+    
+    
 }
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -62,6 +66,14 @@
         self.currentMessage = self.showingMessages[self.selectedCellIndex];
         nextVC.messageContentProxy = self.currentMessage.messageContent;
     }
+}
+
+#pragma mark - UIRefreshControl
+
+-(void)refreshInvoked:(id)sender {
+    
+    [self loadMessagesFromParse];
+    [self loadReceivedMessages];
 }
 
 #pragma mark - Table view data source
@@ -101,42 +113,9 @@
 }
 
 
-
-#pragma mark - UIALertViewDelegate
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if (buttonIndex == 0) {
-        UITextField* textField = [alertView textFieldAtIndex:0];
-        NSString* message = textField.text;
-        if (textField.text.length > 0) {
-            [self saveActivityToParseWithMessage:message];
-
-        }
-        
-    }else if (buttonIndex == 1){
-        
-        [alertView dismissWithClickedButtonIndex:buttonIndex animated:YES];
-    }
-}
-
 #pragma mark - Helper Methods 
 
--(void)saveActivityToParseWithMessage:(NSString*)message{
-    
-    PFObject* activity = [PFObject objectWithClassName:@"Sharing"];
-    [activity setObject:message forKey:@"testimonio"];
-    [activity setObject:@"Daniel" forKey:@"userName"];
-    [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"Mensaje enviado" message:@"Enviado Exitosamente" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alertView show];
-            [self viewDidAppear:YES]; 
 
-        }
-    }];
-    
-}
 
 /*TODO:
  1)Retrieve from parse and store to core data
@@ -217,7 +196,7 @@
             for (PFObject* object in objects) {
                 [self receivedMessageFromParseObject:object];
             }
-
+            [self.refreshControl endRefreshing];
         }
     }];
     
