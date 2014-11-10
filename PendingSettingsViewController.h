@@ -20,9 +20,9 @@
 
 @protocol PendingMessagesDelegate <NSObject>
 
--(void)didUpdateMessageSendDate:(NSDate*)sendDate;
--(void)didUpdateMessage:(NSString*)message;
--(void)didUpdateMessageTag:(NSString*)messageTag;
--(void)didFinishSelectingtargetgroupsAndRoles:(NSArray*)info;//Array of dictionaries with keys targetGroup and roleInChurch
--(void)didSaveMessageSettings;
+//-(void)didUpdateMessageSendDate:(NSDate*)sendDate;
+//-(void)didUpdateMessage:(NSString*)message;
+//-(void)didUpdateMessageTag:(NSString*)messageTag;
+//-(void)didFinishSelectingtargetgroupsAndRoles:(NSArray*)info;//Array of dictionaries with keys targetGroup and roleInChurch
+-(void)didSaveMessageSettings:(Message*)message;
 @end

@@ -10,4 +10,6 @@
 
 @interface CCIndexPath : NSIndexPath <NSCoding>
 
+-(BOOL)isEqualToIndexPath:(NSIndexPath*)indexPath;
+
 @end

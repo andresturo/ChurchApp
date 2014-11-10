@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		75452F161A00AD8800F73306 /* Messages.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75452F111A00AD8800F73306 /* Messages.xcdatamodeld */; };
 		757844F71A07CA26003E2F14 /* DetailSharedMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 757844F61A07CA26003E2F14 /* DetailSharedMessageViewController.m */; };
-		757844FE1A07F07C003E2F14 /* ReceivedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 757844FD1A07F07C003E2F14 /* ReceivedMessage.m */; };
-		757845011A07F07D003E2F14 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 757845001A07F07D003E2F14 /* Message.m */; };
 		757845031A0834B6003E2F14 /* collect-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 757845021A0834B6003E2F14 /* collect-32.png */; };
 		757845051A0834DB003E2F14 /* invite-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 757845041A0834DB003E2F14 /* invite-32.png */; };
 		757845081A09DE79003E2F14 /* TargetGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = 757845071A09DE79003E2F14 /* TargetGroups.m */; };
@@ -107,6 +105,8 @@
 		75BA6AEA19F9A87000A772D5 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA6AE219F9A87000A772D5 /* DistancePickerView.m */; };
 		75BA6AEB19F9A87000A772D5 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BA6AE419F9A87000A772D5 /* SWActionSheet.m */; };
 		75BA6AED19F9AB2C00A772D5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75BA6AEC19F9AB2C00A772D5 /* Info.plist */; };
+		75D06C2D1A1144C80038C27E /* ReceivedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D06C2C1A1144C80038C27E /* ReceivedMessage.m */; };
+		75D06C301A1144C90038C27E /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D06C2F1A1144C90038C27E /* Message.m */; };
 		75D20CC319FAD0F70058D86B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D20CC219FAD0F70058D86B /* MobileCoreServices.framework */; };
 		75D20CC519FAD1040058D86B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D20CC419FAD1040058D86B /* libz.dylib */; };
 /* End PBXBuildFile section */
@@ -125,10 +125,6 @@
 		75452F121A00AD8800F73306 /* Messages.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Messages.xcdatamodel; sourceTree = "<group>"; };
 		757844F51A07CA26003E2F14 /* DetailSharedMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailSharedMessageViewController.h; path = ChurchApp/DetailSharedMessageViewController.h; sourceTree = "<group>"; };
 		757844F61A07CA26003E2F14 /* DetailSharedMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailSharedMessageViewController.m; path = ChurchApp/DetailSharedMessageViewController.m; sourceTree = "<group>"; };
-		757844FC1A07F07C003E2F14 /* ReceivedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceivedMessage.h; sourceTree = "<group>"; };
-		757844FD1A07F07C003E2F14 /* ReceivedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceivedMessage.m; sourceTree = "<group>"; };
-		757844FF1A07F07D003E2F14 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		757845001A07F07D003E2F14 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		757845021A0834B6003E2F14 /* collect-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collect-32.png"; sourceTree = "<group>"; };
 		757845041A0834DB003E2F14 /* invite-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invite-32.png"; sourceTree = "<group>"; };
 		757845061A09DE79003E2F14 /* TargetGroups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetGroups.h; sourceTree = "<group>"; };
@@ -265,6 +261,10 @@
 		75BA6AE319F9A87000A772D5 /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWActionSheet.h; sourceTree = "<group>"; };
 		75BA6AE419F9A87000A772D5 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
 		75BA6AEC19F9AB2C00A772D5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75D06C2B1A1144C80038C27E /* ReceivedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceivedMessage.h; sourceTree = "<group>"; };
+		75D06C2C1A1144C80038C27E /* ReceivedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceivedMessage.m; sourceTree = "<group>"; };
+		75D06C2E1A1144C90038C27E /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		75D06C2F1A1144C90038C27E /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		75D20CC219FAD0F70058D86B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		75D20CC419FAD1040058D86B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -310,12 +310,12 @@
 			isa = PBXGroup;
 			children = (
 				75452F111A00AD8800F73306 /* Messages.xcdatamodeld */,
+				75D06C2E1A1144C90038C27E /* Message.h */,
+				75D06C2F1A1144C90038C27E /* Message.m */,
+				75D06C2B1A1144C80038C27E /* ReceivedMessage.h */,
+				75D06C2C1A1144C80038C27E /* ReceivedMessage.m */,
 				757845061A09DE79003E2F14 /* TargetGroups.h */,
 				757845071A09DE79003E2F14 /* TargetGroups.m */,
-				757844FF1A07F07D003E2F14 /* Message.h */,
-				757845001A07F07D003E2F14 /* Message.m */,
-				757844FC1A07F07C003E2F14 /* ReceivedMessage.h */,
-				757844FD1A07F07C003E2F14 /* ReceivedMessage.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -793,9 +793,9 @@
 				75BA6A3419F99C1100A772D5 /* SharingTableViewController.m in Sources */,
 				75BA6AEA19F9A87000A772D5 /* DistancePickerView.m in Sources */,
 				75BA6A6319F99C5A00A772D5 /* MapViewController.m in Sources */,
-				757845011A07F07D003E2F14 /* Message.m in Sources */,
+				75D06C301A1144C90038C27E /* Message.m in Sources */,
 				75BA6A2E19F99C1100A772D5 /* PendingSettingsViewController.m in Sources */,
-				757844FE1A07F07C003E2F14 /* ReceivedMessage.m in Sources */,
+				75D06C2D1A1144C80038C27E /* ReceivedMessage.m in Sources */,
 				75BA6AE919F9A87000A772D5 /* ActionSheetStringPicker.m in Sources */,
 				75BA6A2719F99C1100A772D5 /* CCIndexPath.m in Sources */,
 				75BA6AEB19F9A87000A772D5 /* SWActionSheet.m in Sources */,

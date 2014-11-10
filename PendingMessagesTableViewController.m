@@ -229,7 +229,7 @@
             [message setObject:msg.messageContent forKey:@"content"];
             [message setObject:msg.messageTag forKey:@"tag"];
             [message setObject:msg.deliverDate forKey:@"showDate"];
-            [message setObject:msg.targetGroups forKey:@"targetGroups"];
+            [message setObject:msg.targetGroup forKey:@"targetGroups"];
             [message saveInBackground];
             
         }else {
@@ -317,53 +317,10 @@
 
 #pragma mark - PendingMessageDelegate
 
--(void)didUpdateMessageSendDate:(NSDate *)sendDate{
-    
-    
-    //Update Schedule date for message on TableViewCell
-    
-    Message* currentMessage =[self.messages objectAtIndex:self.indexPathForSelectedCell.row];
-    currentMessage.deliverDate = sendDate;
-    [self.messages setObject:currentMessage atIndexedSubscript:self.indexPathForSelectedCell.row];
-    
-    [self.tableView reloadData];
-    
-    
-}
-
--(void)didUpdateMessageTag:(NSString *)messageTag{
-    if (messageTag) {
-        Message* currentMessage = self.messages[self.indexPathForSelectedCell.row];
-         [currentMessage setMessageTag:messageTag];
-        [self.tableView reloadData];
-    }
-   
-}
-
--(void)didFinishSelectingtargetgroupsAndRoles:(NSArray *)info{
-    
-    Message* currentMessage = self.messages[self.indexPathForSelectedCell.row];
-    currentMessage.targetGroups = info;
-    
-}
--(void)didUpdateMessage:(NSString *)message{
-    Message* currentMessage = self.messages[self.indexPathForSelectedCell.row];
-
-    currentMessage.messageContent = message;
-    NSLog(@"Updated message content %@",currentMessage.messageContent);
-}
 
 
--(void)didSaveMessageSettings{
-    Message* msg = self.messages[self.indexPathForSelectedCell.row];
-    NSError* error;
-    
-    BOOL succeded = [[msg managedObjectContext] save:&error];
-    
-    if (!succeded) {
-        NSLog(@"Didnt save");
-
-    }
+-(void)didSaveMessageSettings:(Message*)message{
+  
     
     [self updateParseMessage];
 }

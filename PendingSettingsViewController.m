@@ -33,36 +33,19 @@
 @property (strong,nonatomic) NSArray* rolesInChurch;
 @property (strong,nonatomic) NSIndexPath* currentSelectedIndexPath;
 
-@property (strong,nonatomic) NSMutableArray* datasourceTargets;
+//@property (strong,nonatomic) NSMutableArray* datasourceTargets;
 //An array of CCIndexPath objects
-@property (strong,nonatomic) NSMutableArray* checkMarkIndexPaths;
-@property (strong,nonatomic) NSMutableArray* targetsWithRoles;
+//@property (strong,nonatomic) NSMutableArray* checkMarkIndexPaths;
+//@property (strong,nonatomic) NSMutableArray* targetsWithRoles;
+
+@property (strong,nonatomic) NSString* selectedTarget;
+@property (strong,nonatomic) NSString* seletedRole;
 
 @end
 
 @implementation PendingSettingsViewController
 
-#pragma mark -Lazy 
 
--(NSMutableArray *)targetsWithRoles{
-    if (!_targetsWithRoles) {
-        _targetsWithRoles = [[NSMutableArray alloc]init];
-        
-    }
-    return _targetsWithRoles;
-}
-
--(NSMutableArray *)datasourceTargets{
-    if (!_datasourceTargets) {
-        _datasourceTargets = [[NSMutableArray alloc]init];
-        for (NSInteger i = 0; i < self.churchNames.count; i++) {
-            [self.datasourceTargets addObject:[self targetWithDefaultRole:i]];
-            
-        }
-    }
-    return _datasourceTargets;
-    
-}
 
 #pragma mark - VIewLifeCycle
 
@@ -90,16 +73,16 @@
     [self setTodaysDate];
     
     //Default Selection
-    self.checkMarkIndexPaths = [[NSMutableArray alloc]init];
+    self.currentSelectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:1];
     self.navigationController.delegate = self;
+    self.seletedRole = @"None";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
     
-    [self checkMarksFromMessageTargets];
-//    [self setRolesInDatasourceTargets];
+
 }
 
 
@@ -116,7 +99,7 @@
     self.navigationController.delegate = nil;
 
     
-    if ([self.checkMarkIndexPaths count] == 0 && [viewController isKindOfClass:[PendingMessagesTableViewController class]]) {
+    if ([viewController isKindOfClass:[PendingMessagesTableViewController class]]) {
         UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"Can't send a message withoud target group" message:@"Select a target group" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         
         [alertView show];
@@ -144,7 +127,6 @@
     if (timeInterval > 0) {
         //Date to Register UILocalNotification
         self.selectedDate = sender.date;
-        
         NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
         
         //[formatter setDateFormat:@"dd/mm/yyyy"];
@@ -165,14 +147,11 @@
 #pragma mark - IBActions
 - (IBAction)saveBarButtonPressed:(UIBarButtonItem *)sender {
     
-    if (self.selectedDate && [self.delegate respondsToSelector:@selector(didUpdateMessageSendDate:)]) {
-        [self.delegate didUpdateMessageSendDate:self.selectedDate];
+    
+    self.message.deliverDate = self.selectedDate;
 
-    }
-    [self selectedTargetsAndRoles];
-    NSLog(@"Saved targets and roles %@",self.targetsWithRoles);
-    [self.delegate didFinishSelectingtargetgroupsAndRoles:self.targetsWithRoles];
-    [self.delegate didSaveMessageSettings];
+    NSLog(@"Did save message %@",self.message);
+    [self.delegate didSaveMessageSettings:self.message];
     
 }
 
@@ -180,37 +159,7 @@
 
 #pragma mark - Helper Methods
 
--(void)checkMarksFromMessageTargets{
-    
-    
-    NSMutableArray* checkMarkIndexPaths = [[NSMutableArray alloc]init];
-    NSLog(@"Initial datasource targets %@",self.message.targetGroups);
-    NSInteger indexCount;
-    //Look up in message object if it contains the dataSourceTargetGroup if so then replace the dataSourceTargetgroup object
-    
-    for (indexCount = 0 ; indexCount < self.datasourceTargets.count ; indexCount++) {
-        
-        NSDictionary* dict = self.datasourceTargets[indexCount];
-        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"targetGroup == %@",dict[@"targetGroup"]];
-        NSArray* filteredArray = [self.message.targetGroups filteredArrayUsingPredicate:predicate];
-        
-        if (filteredArray.count > 0) {
-            NSDictionary* targetMatch = filteredArray[0];
 
-            NSLog(@"Found a match: %@ at index %i",targetMatch,indexCount);
-            [self.datasourceTargets setObject:targetMatch atIndexedSubscript:indexCount];
-            
-            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:indexCount inSection:1];
-            [checkMarkIndexPaths addObject:indexPath];
-        }
-        
-      
-   
-    }
-    
-    self.checkMarkIndexPaths = checkMarkIndexPaths;
-    [self.tableView reloadData];
-}
 
 -(void)setTodaysDate {
     
@@ -224,37 +173,6 @@
 }
 
 
-
--(NSDictionary*)targetWithDefaultRole:(NSInteger)index{
-    
-    NSString* target = self.churchNames[index];
-    NSString* role = @"None";
-    
-    return @{@"targetGroup":target,@"roleInChurch":role};
-}
-
--(void)selectedTargetsAndRoles{
-    
-    for (NSIndexPath* indexPath in self.checkMarkIndexPaths) {
-        NSString* selectedChurch = [self.datasourceTargets[indexPath.row] objectForKey:@"targetGroup"];
-        NSString* selectedRole = [self.datasourceTargets[indexPath.row] objectForKey:@"roleInChurch"];
-        NSDictionary* targetAndRole = @{@"targetGroup":selectedChurch,@"roleInChurch":selectedRole};
-        [self.targetsWithRoles addObject:targetAndRole];
-    }
-    
-}
--(void)setRolesInDatasourceTargets{
-    
-    for (NSDictionary* dictionary  in self.message.targetGroups) {
-        if ([self.datasourceTargets containsObject:dictionary]) {
-            NSLog(@"Datasourcetargets contain %@",dictionary[@"targetGroup"]);
-            NSInteger index = [self.datasourceTargets indexOfObject:dictionary];
-            [self.datasourceTargets replaceObjectAtIndex:index withObject:dictionary];
-            
-        }
-    }
-    
-}
 
 
 #pragma mark - Table View Data Source
@@ -294,10 +212,21 @@
     if (indexPath.section ==1) {
 
         cell.titleLabel.text = self.churchNames[indexPath.row];
-        NSString* role = [self.datasourceTargets[indexPath.row] objectForKey:@"roleInChurch"];
-        cell.subtitleLabel.text = [NSString stringWithFormat:@"Specific to: %@",role];
+        cell.subtitleLabel.hidden = NO;
         cell.roleButton.tag = indexPath.row;
         [cell.roleButton addTarget:self action:@selector(roleButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+        if (self.currentSelectedIndexPath.row == indexPath.row ) {
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+            
+            cell.subtitleLabel.text = [NSString stringWithFormat:@"Specific to: %@",self.seletedRole];
+
+             cell.roleButton.hidden = NO;
+        }else {
+            cell.subtitleLabel.hidden = YES;
+            cell.roleButton.hidden = YES;
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
+        }
         
    
         
@@ -307,20 +236,18 @@
         NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"ccc dd MMM hh:m a"];
         NSString* dateString = [formatter stringFromDate:self.message.deliverDate];
+        if(dateString)
         cell.subtitleLabel.text = [NSString stringWithFormat:@"Scheduled for: %@", dateString];
+        else cell.subtitleLabel.hidden = YES;
         cell.roleButton.hidden = YES;
+        
+     
         
     }
     
   
         
-    if ([self.checkMarkIndexPaths containsObject:(CCIndexPath*)indexPath]) {
-            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-           // cell.roleButton.hidden = NO;
-    }else {
-            
-            [cell setAccessoryType:UITableViewCellAccessoryNone];
-    }
+   
     
 
     
@@ -342,34 +269,17 @@
     if (indexPath.section == 0) {
         
         
-        [self selectedTargetsAndRoles];
-        self.message.targetGroups = self.targetsWithRoles;
+        
         [[self.message managedObjectContext]save:nil];
         
         [self performSegueWithIdentifier:@"toMessageEditSegue" sender:nil];
         
         
     }else if(indexPath.section == 1){
-        
-        TargetGroupTableViewCell* cell = (TargetGroupTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-        cell.roleButton.hidden = NO;
+        self.seletedRole = self.rolesInChurch[0];
         self.currentSelectedIndexPath = indexPath;
-
-        //Check if cell is already checkmarked
-        if ([self.checkMarkIndexPaths containsObject:(CCIndexPath*)indexPath]) {
-            
-            NSInteger index = [self.checkMarkIndexPaths indexOfObject:indexPath];
-            NSLog(@"Index of deselected cell: %i",index);
-            [self.checkMarkIndexPaths removeObjectAtIndex:index];
-            
-        }else{
-            [self.checkMarkIndexPaths addObject:(CCIndexPath*)indexPath];
-            
-
-        }
-        
-        NSLog(@"Array of checkmark indexes count: %i",self.checkMarkIndexPaths.count);
-
+        self.selectedTarget = self.churchNames[self.currentSelectedIndexPath.row];
+        self.message.targetGroup = self.selectedTarget;
         [self.tableView reloadData];
 
     }
@@ -390,7 +300,6 @@
 -(void)didFinishEditingTag:(NSString *)messageTag{
     self.message.messageTag = messageTag;
     [self.tableView reloadData];
-    [self.delegate didUpdateMessageTag:messageTag];
 
 }
 
@@ -404,19 +313,16 @@
     //This is done because button press in cell steals cell selection
     
     NSIndexPath* indexForStealTouch = [NSIndexPath indexPathForRow:[sender tag] inSection:1];
-    self.currentSelectedIndexPath = indexForStealTouch;
+    self.currentSelectedIndexPath = (CCIndexPath*)indexForStealTouch;
     
     [ActionSheetStringPicker showPickerWithTitle:@"Select a Role" rows:self.rolesInChurch
                                 initialSelection:0
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            NSLog(@"Selected role %@",self.rolesInChurch[selectedIndex]);
                                            
-                                           NSString* selectedRole = self.rolesInChurch[selectedIndex];
-                                           
-                                           NSMutableDictionary* targetAndRole = [self.datasourceTargets[self.currentSelectedIndexPath.row] mutableCopy];
-                                           [targetAndRole setObject:selectedRole forKey:@"roleInChurch"];
-                                           
-                                           [self.datasourceTargets setObject:targetAndRole atIndexedSubscript:self.currentSelectedIndexPath.row];
+                                           self.seletedRole = self.rolesInChurch[selectedIndex];
+                                           self.message.roleInGroup = self.seletedRole;
+                                        
                                            
                                            [self.tableView reloadData];
                                            
@@ -428,30 +334,7 @@
 }
 
 
-#pragma mark - NSKeyedArchiver 
 
-//-(void)saveCheckMarks {
-//    
-//    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:self.checkMarkIndexPaths];
-//    NSUserDefaults* standardDefaults = [NSUserDefaults standardUserDefaults];
-//    [standardDefaults removeObjectForKey:@"checkMarks"];
-//    [standardDefaults setObject:data forKey:@"checkMarks"];
-//    
-//    
-//
-//}
-//
-//-(void)loadCheckMarks {
-//    
-//    NSData* checkMarkData = [[NSUserDefaults standardUserDefaults]objectForKey:@"checkMarks"];
-//    if (checkMarkData){
-//        self.checkMarkIndexPaths = [NSKeyedUnarchiver unarchiveObjectWithData:checkMarkData];
-//        NSLog(@"Loaded %i checkmarks",self.checkMarkIndexPaths.count);
-//
-//        [self.tableView reloadData];
-//        
-//    }
-//}
 
 
 
