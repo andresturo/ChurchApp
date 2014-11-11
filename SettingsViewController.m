@@ -70,7 +70,7 @@
 #pragma mark - IBActions
 - (IBAction)saveBarButtonPressed:(id)sender {
     
-    [self pushUserSettingsToParse];
+//    [self pushUserSettingsToParse];
     
 }
 

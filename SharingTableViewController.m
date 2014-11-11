@@ -183,16 +183,19 @@
 
 #pragma mark - Parse
 -(void)loadMessagesFromParse{//MARK: seems like parse cant support predicates with contained in
+    
     NSString* currentUserChurch = [[NSUserDefaults standardUserDefaults] objectForKey:@"attendingChurch"];
     NSLog(@"Will query for user attendingChurch %@",currentUserChurch);
     PFQuery* query = [PFQuery queryWithClassName:@"Sharing"];
+    [query whereKey:@"targetGroup" equalTo:currentUserChurch];
+    
 //    [query whereKey:@"fromUser" notEqualTo:[PFUser currentUser]];
     [query includeKey:@"fromUser"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
           //TODO: Make ReceivedMessages from fetched Array
-            NSLog(@"Found %i messages for user attendingChurch",objects.count);
+            NSLog(@"Found %i messages for user attending Church %@",objects.count,currentUserChurch);
             for (PFObject* object in objects) {
                 [self receivedMessageFromParseObject:object];
             }
@@ -230,13 +233,11 @@
     NSString* currentUserRole = [[NSUserDefaults standardUserDefaults] objectForKey:@"roleInChurch"];
     NSString* currentUserChurch = [[NSUserDefaults standardUserDefaults] objectForKey:@"attendingChurch"];
 
-    NSArray* targetGroups = object[@"targetGroups"];//This for shure must be an array of one object
-    NSDictionary* targetGroup = [targetGroups firstObject];
+    NSString* targetGroup = object[@"targetGroup"];//This for shure must be an array of one object
     ReceivedMessage* newMessage;
     
     //Filter parse query for target and role of user
-    if ([targetGroup[@"targetGroup"]isEqualToString:currentUserChurch])
-    if ([targetGroup[@"roleInChurch"] isEqualToString:@"None"] || [targetGroup[@"roleInChurch"] isEqualToString:currentUserRole]) {
+    if ([targetGroup isEqualToString:currentUserChurch]){
         
         //Persist if not already saved
         NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"ReceivedMessage"];

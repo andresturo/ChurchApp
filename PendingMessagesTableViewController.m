@@ -213,31 +213,7 @@
     
 }
 
--(void)updateParseMessage{
-    
-    PFQuery* query = [PFQuery queryWithClassName:@"Sharing"];
-    
-    Message* msg = self.messages[self.indexPathForSelectedCell.row];
-    NSLog(@"message tag: %@",msg.messageContent);
-    [query whereKey:@"tag" equalTo:msg.messageTag ];
-    
-    
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *message, NSError *error) {
-        if (!error) {
-            NSLog(@"Updating Found PFObject %@",message[@"targetGroups"]);
-            //Found message with specified tag
-            [message setObject:msg.messageContent forKey:@"content"];
-            [message setObject:msg.messageTag forKey:@"tag"];
-            [message setObject:msg.deliverDate forKey:@"showDate"];
-            [message setObject:msg.targetGroup forKey:@"targetGroups"];
-            [message saveInBackground];
-            
-        }else {
-            // Did not find any UserStats for the current user
-            NSLog(@"Error: %@", error);
-        }
-    }];
-}
+
 
 
 #pragma mark - Table view data source
@@ -321,8 +297,6 @@
 
 -(void)didSaveMessageSettings:(Message*)message{
   
-    
-    [self updateParseMessage];
 }
 
 

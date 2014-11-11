@@ -100,9 +100,14 @@
 
     
     if ([viewController isKindOfClass:[PendingMessagesTableViewController class]]) {
-        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"Can't send a message withoud target group" message:@"Select a target group" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         
-        [alertView show];
+        if ([self.churchNames containsObject:self.message.targetGroup]) {
+             UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"Can't send a message withoud target group" message:@"Select a target group" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alertView show];
+
+        }
+       
+        
     }
 }
 
@@ -149,12 +154,41 @@
     
     
     self.message.deliverDate = self.selectedDate;
-
+    
+    //TODO: Persist to core data
+    
+    [self updateParseWithMessage];
     NSLog(@"Did save message %@",self.message);
     [self.delegate didSaveMessageSettings:self.message];
     
 }
 
+#pragma mark - Parse 
+-(void)updateParseWithMessage{
+    
+    PFQuery* query = [PFQuery queryWithClassName:@"Sharing"];
+    
+    NSLog(@"message tag: %@",self.message.messageContent);
+    [query whereKey:@"tag" equalTo:self.message.messageTag ];
+    
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *message, NSError *error) {
+        if (!error) {
+            NSLog(@"Updating Found PFObject %@",message);
+            //Found message with specified tag
+            [message setObject:self.message.messageContent forKey:@"content"];
+            [message setObject:self.message.messageTag forKey:@"tag"];
+            [message setObject:self.message.deliverDate forKey:@"showDate"];
+            [message setObject:self.message.targetGroup forKey:@"targetGroup"];
+            [message setObject:self.message.roleInGroup forKey:@"roleInGroup"];
+            [message saveInBackground];
+            
+        }else {
+            // Did not find any UserStats for the current user
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
 
 
 #pragma mark - Helper Methods
@@ -276,7 +310,11 @@
         
         
     }else if(indexPath.section == 1){
-        self.seletedRole = self.rolesInChurch[0];
+        //If selected Index is different from currentSelectedIndex
+        if (self.currentSelectedIndexPath.row != indexPath.row) {
+            self.seletedRole = self.rolesInChurch[0];
+
+        }
         self.currentSelectedIndexPath = indexPath;
         self.selectedTarget = self.churchNames[self.currentSelectedIndexPath.row];
         self.message.targetGroup = self.selectedTarget;
