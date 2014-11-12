@@ -180,6 +180,7 @@
     }else {
         NSLog(@"Sender unselected");
         [_player play];
+        [_player displayControlCenterSongInfo];
 
     }
    
