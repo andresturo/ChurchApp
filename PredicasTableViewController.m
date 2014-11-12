@@ -167,6 +167,7 @@
 #pragma mark IBActions
 
 -(void)playStopAudio:(UIButton*)sender{
+//TODO: Check status of button, might have changed on control center.
 
     NSLog(@"Button Tag: %i",sender.tag);
     NSIndexPath* path = [NSIndexPath indexPathForRow:sender.tag inSection:0];
